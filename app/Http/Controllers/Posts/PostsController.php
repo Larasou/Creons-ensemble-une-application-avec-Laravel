@@ -21,11 +21,4 @@ class PostsController extends Controller
             'categories' => Category::get(),
         ]);
     }
-
-    public function show(Category $category, Post $post)
-    {
-        return view('posts.post', [
-            'post' => $post,
-        ]);
-    }
 }
