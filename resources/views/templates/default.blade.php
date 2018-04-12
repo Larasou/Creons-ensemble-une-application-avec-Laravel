@@ -9,7 +9,6 @@
     <link href="/favicon.png" rel="icon" type="image/png" />
     <meta content="#ffffff" name="theme-color"/>
     <title>@yield('meta-title')</title>
-    <link rel="stylesheet" href="{{ secure_asset('css/design.css') }}">
     <link rel="stylesheet" href="{{ secure_asset('dist/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ secure_asset('dist/theme.min.css') }}">
     <script src="{{ secure_asset('dist/jquery.min.js') }}"></script>
