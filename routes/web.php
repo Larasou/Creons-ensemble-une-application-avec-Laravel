@@ -23,6 +23,7 @@ Route::group(['namespace' => 'Users'], function () {
    Route::get('tutorials', 'TutorialsController@index')->name('tutorials');
 });
 
-Route::group(['namespace' => 'Posts'], function () {
-   Route::get('blog', 'PostsController@index')->name('blog');
+Route::group(['namespace' => 'Posts', 'prefix' => 'blog'], function () {
+   Route::get('', 'PostsController@index')->name('blog');
+   Route::get('/{category}', 'PostsController@index');
 });

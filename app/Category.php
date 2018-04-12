@@ -26,4 +26,9 @@ class Category extends Model
     {
         return $this->hasMany(Tutorial::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
