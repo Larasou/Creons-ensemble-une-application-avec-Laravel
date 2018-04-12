@@ -18,6 +18,12 @@ class Post extends Model
         });
     }
 
+    public function path()
+    {
+        return "/blog/{$this->category->slug}/{$this->id}";
+    }
+    
+
     public function user()
     {
         return $this->belongsTo(User::class);

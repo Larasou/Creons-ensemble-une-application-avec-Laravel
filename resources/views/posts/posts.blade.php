@@ -13,6 +13,7 @@
                 </div>
             </h2>
 
+
             <div class="d-flex justify-content-end">
                 <div class="ui labeled icon top right pointing dropdown button">
                     <i class="filter icon"></i>
@@ -69,10 +70,19 @@
                 <div class="column">
                     <div class="ui raised segment">
                         <a href="{{ url("blog/{$post->category->slug}") }}" class="ui {{ $post->category->color }} ribbon label">{{ $post->category->name }}</a>
-                        <span>{{ $post->name }}</span>
+                        <span>
+                            <a href="{{ url($post->path()) }}"
+                               class="text-dark"
+                               style="text-decoration: none">
+                                {{ $post->name }}
+                            </a>
+                        </span>
                         <p class="mt-3">
                             {{ str_limit($post->body, 175)  }}
                         </p>
+                        <a href="{{ url($post->path()) }}" class="ui orange right ribbon label">
+                            Lire la suite...
+                        </a>
                     </div>
                 </div>
                     @empty
