@@ -29,4 +29,5 @@ Route::group(['namespace' => 'Posts', 'prefix' => 'blog'], function () {
    Route::get('/{category}/{post}', 'PostsController@show')->name('post');
    Route::get('/{category}/{post}/edit', 'PostsController@edit');
    Route::put('/{category}/{post}', 'PostsController@update');
+   Route::delete('/{category}/{post}', 'PostsController@destroy');
 });

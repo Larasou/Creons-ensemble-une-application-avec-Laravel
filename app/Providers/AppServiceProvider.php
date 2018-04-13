@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Category;
 use Carbon\Carbon;
+use cebe\markdown\GithubMarkdown;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
         
         view()->composer('*', function ($view) {
             $view->with('categories', Category::select('id', 'name', 'slug')->get());
+        });
+
+        view()->composer('*', function ($view) {
+            $view->with('markdown', (new GithubMarkdown()));
         });
     }
 

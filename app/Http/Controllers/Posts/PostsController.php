@@ -39,7 +39,13 @@ class PostsController extends Controller
     public function update(Category $category, Post $post)
     {
         $post->update(request()->all());
-        return redirect($post->p
-        ath());
+        return redirect($post->path());
+    }
+
+    public function destroy(Category $category, Post $post)
+    {
+        $post->delete();
+
+        return redirect()->route('blog');
     }
 }

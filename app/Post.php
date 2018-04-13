@@ -22,7 +22,6 @@ class Post extends Model
     {
         return "/blog/{$this->category->slug}/{$this->id}";
     }
-    
 
     public function user()
     {
