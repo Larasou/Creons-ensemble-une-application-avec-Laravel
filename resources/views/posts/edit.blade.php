@@ -13,6 +13,13 @@
                 </div>
             </h2>
 
+            <div class="d-flex justify-content-end mb-3">
+                <a href="{{ url("{$post->oath()}/edit") }}" class="ui olive button icon">
+                    <i class="edit icon"></i>
+                    Editer
+                </a>
+            </div>
+
             <div>
                 {!! $post->body !!}
             </div>
