@@ -24,8 +24,22 @@ class PostsController extends Controller
 
     public function show(Category $category, Post $post)
     {
-        return view('posts.post', [
+        return view('posts.show', [
             'post' => $post,
         ]);
+    }
+
+    public function edit(Category $category, Post $post)
+    {
+        return view('posts.edit', [
+            'post' => $post,
+        ]);
+    }
+
+    public function update(Category $category, Post $post)
+    {
+        $post->update(request()->all());
+        return redirect($post->p
+        ath());
     }
 }

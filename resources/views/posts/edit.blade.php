@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('meta-title', $title = $post->name)
+@section('meta-title', $title = "Edition de $post->name")
 @section('meta-description', $description  = str_limit($post->body, 35))
 
 @section('content')
@@ -13,16 +13,32 @@
                 </div>
             </h2>
 
-            <div class="d-flex justify-content-end mb-3">
-                <a href="{{ url("{$post->oath()}/edit") }}" class="ui olive button icon">
-                    <i class="edit icon"></i>
-                    Editer
-                </a>
-            </div>
+            <form action="{{ url($post->path()) }}" method="POST" class="ui form mt-5">
+                @csrf
+                @method('PUT')
+                <div class="two fields">
+                    <div class="field">
+                        <input type="text" value="{{ $post->name }}" name="name" placeholder="Nom de l'article">
+                    </div>
+                    <div class="field">
+                        <select name="category_id" class="ui dropdown">
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}"
+                                        {{ $post->category->id === $category->id ? 'selected' : '' }}
+                                >{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <textarea name="body" placeholder="Votre article" cols="30" rows="10">{{ $post->body }}</textarea>
+                </div>
+                <button type="submit" class="ui orange button icon">
+                    <i class="check icon"></i>
+                    Mettre à jour
+                </button>
+            </form>
 
-            <div>
-                {!! $post->body !!}
-            </div>
 
         </div>
     </div>

@@ -27,4 +27,6 @@ Route::group(['namespace' => 'Posts', 'prefix' => 'blog'], function () {
    Route::get('', 'PostsController@index')->name('blog');
    Route::get('/{category}', 'PostsController@index');
    Route::get('/{category}/{post}', 'PostsController@show')->name('post');
+   Route::get('/{category}/{post}/edit', 'PostsController@edit');
+   Route::put('/{category}/{post}', 'PostsController@update');
 });

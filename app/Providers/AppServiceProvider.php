@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Category;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -19,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
 
         Carbon::setLocale('fr');
         setlocale(LC_TIME, 'fr_FR.utf8', 'fr');
+        
+        view()->composer('*', function ($view) {
+            $view->with('categories', Category::select('id', 'name', 'slug')->get());
+        });
     }
 
     /**
