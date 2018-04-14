@@ -8,15 +8,19 @@
     <meta content="Larasou" name="author"/>
     <link href="/favicon.png" rel="icon" type="image/png" />
     <meta content="#ffffff" name="theme-color"/>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('meta-title')</title>
     <link rel="stylesheet" href="{{ secure_asset('dist/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ secure_asset('dist/theme.min.css') }}">
     <script src="{{ secure_asset('dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
     @yield('css')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="theme">
 <div class="pusher">
-    <div id="content">
+    <div id="app" class="content">
         @include('layouts.navigation')
         @yield('content')
     </div>
