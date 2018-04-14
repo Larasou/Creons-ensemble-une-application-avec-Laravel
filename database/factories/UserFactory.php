@@ -68,3 +68,9 @@ $factory->define(App\Tutorial::class, function (Faker $faker) {
         'body' => $faker->text(900),
     ];
 });
+
+$factory->define(App\Comment::class, function (Faker $faker) {
+    return [
+        'body' => $faker->sentence,
+    ];
+});

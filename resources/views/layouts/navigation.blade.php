@@ -7,8 +7,9 @@
         <a class="item" href="{{ route('tutorials') }}">Tutoriels</a>
         <a class="item" href="{{ route('blog') }}">Blog</a>
         <div class="right menu">
-            <a class="item" href="https://github.com/semantic-ui-forest"><i class="github icon"></i></a><a
-                    class="item" href="/atom.xml"><i class="feed icon"></i></a>
+            <a class="item" href="{{ route('login') }}"><i class="user icon"></i></a>
+            <a class="item" href="{{ route('register') }}"><i class="user plus icon"></i></a>
+            <a class="item" href="/atom.xml"><i class="feed icon"></i></a>
             <div class="item">
                 <form action="https://www.google.com/search" class="ui form" method="get" target="_blank">
                     <input name="q" type="hidden" value="site:semantic-ui-forest.com"/>

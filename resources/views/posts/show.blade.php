@@ -33,6 +33,45 @@
                 {!! $markdown->parse($post->body) !!}
             </div>
 
+            <div class="mt-5">
+                <div class="ui comments">
+                    <form action="{{ url("{$post->path()}/comment") }}" method="POST" class="ui form">
+                        @csrf
+                        <div class="field">
+                            <textarea name="body" rows="3"></textarea>
+                        </div>
+                       <div class="d-flex justify-content-end">
+                           <button type="submit" class="ui orange submit icon button">
+                               <i class="icon comment"></i> Commenter
+                           </button>
+                       </div>
+                    </form>
+                    @foreach($post->comments()->latest()->get() as $comment)
+                        <div class="comment">
+                        <a class="avatar">
+                            <img src="{{ $comment->user->avatar }}">
+                        </a>
+                        <div class="content">
+                            <a class="author">
+                                {{ $comment->user->name }}
+                            </a>
+                            <div class="metadata">
+                                <div class="date">
+                                    {{ $comment->created_at->diffForHumans() }}
+                                </div>
+                            </div>
+                            <div class="text">
+                                {!! $markdown->parse($comment->body) !!}
+                            </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection

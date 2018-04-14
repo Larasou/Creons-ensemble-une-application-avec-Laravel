@@ -23,6 +23,10 @@ class Post extends Model
         return "/blog/{$this->category->slug}/{$this->id}";
     }
 
+    public function comments() {
+        return $this->morphMany('App\Comment', 'commentable'); 
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
