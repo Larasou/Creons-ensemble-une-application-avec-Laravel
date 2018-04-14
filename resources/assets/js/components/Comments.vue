@@ -35,9 +35,22 @@
 <script>
     export default {
         name: "Comments",
-        props: ['comments'],
+       data() {
+            return {
+                comments: {}
+            }
+       },
         created() {
-            console.log(this.comments);
+            // console.log(this.comments);
+           this.fetch();
+        },
+        methods: {
+            fetch() {
+                let uri = `${location.pathname}/comment`;
+                axios.get(uri).then((response) => {
+                    this.comments = response.data;
+                });
+            }
         }
     }
 </script>

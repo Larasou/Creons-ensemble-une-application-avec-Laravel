@@ -47394,7 +47394,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47703,9 +47703,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Comments",
-    props: ['comments'],
+    data: function data() {
+        return {
+            comments: {}
+        };
+    },
     created: function created() {
-        console.log(this.comments);
+        // console.log(this.comments);
+        this.fetch();
+    },
+
+    methods: {
+        fetch: function fetch() {
+            var _this = this;
+
+            var uri = location.pathname + "/comment";
+            axios.get(uri).then(function (response) {
+                _this.comments = response.data;
+            });
+        }
     }
 });
 

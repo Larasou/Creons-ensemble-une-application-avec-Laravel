@@ -33,7 +33,7 @@
                 {!! $markdown->parse($post->body) !!}
             </div>
 
-           <comments :comments="{{ $post->comments()->with('user')->latest()->get() }}"></comments>
+           <comments></comments>
 
         </div>
     </div>

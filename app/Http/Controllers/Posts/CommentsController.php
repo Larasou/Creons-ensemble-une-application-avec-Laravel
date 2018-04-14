@@ -11,7 +11,12 @@ class CommentsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth']);
+        $this->middleware(['auth'])->except(['index']);
+    }
+
+    public function index(Category $category, Post $post) {
+        $comments = $post->comments()->with('user')->latest()->get();
+         return $comments;
     }
 
     public function store(Category $category, Post $post) {
