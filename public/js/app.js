@@ -47610,7 +47610,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47700,6 +47700,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get(uri).then(function (response) {
                 _this.comments = response.data;
             });
+        },
+        remove: function remove(index) {
+            return this.comments.splice(index, 1);
         }
     }
 });
@@ -47790,7 +47793,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47862,7 +47865,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         update: function update() {
             var _this = this;
 
-            var uri = location.pathname + "/" + this.comment.id + "/comment";
+            var uri = location.pathname + '/' + this.comment.id + '/comment';
             axios.patch(uri, {
                 body: this.body
             }).then(function (response) {
@@ -47870,8 +47873,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         destroy: function destroy() {
-            var uri = location.pathname + "/" + this.comment.id + "/comment";
+            var uri = location.pathname + '/' + this.comment.id + '/comment';
             axios.delete(uri);
+            this.$emit('deleted', this.comment.id);
         }
     }
 });
@@ -47921,6 +47925,7 @@ var render = function() {
           _c(
             "a",
             {
+              staticClass: "ml-4",
               attrs: { href: "javascript:void(0)" },
               on: { click: _vm.destroy }
             },
@@ -48033,11 +48038,20 @@ var render = function() {
       [
         _vm._m(0),
         _vm._v(" "),
-        _vm._l(_vm.comments, function(comment) {
+        _vm._l(_vm.comments, function(comment, index) {
           return _c(
             "div",
-            { staticClass: "comment mb-3" },
-            [_c("comment", { attrs: { comment: comment } })],
+            { key: comment.id, staticClass: "comment mb-3" },
+            [
+              _c("comment", {
+                attrs: { comment: comment },
+                on: {
+                  deleted: function($event) {
+                    _vm.remove(index)
+                  }
+                }
+              })
+            ],
             1
           )
         })

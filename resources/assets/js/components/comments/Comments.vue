@@ -11,8 +11,8 @@
                     </button>
                 </div>
             </form>
-            <div v-for="comment in comments" class="comment mb-3">
-              <comment :comment="comment"></comment>
+            <div v-for="(comment, index) in comments" :key="comment.id" class="comment mb-3">
+              <comment :comment="comment" @deleted="remove(index)"></comment>
             </div>
         </div>
     </div>
@@ -39,6 +39,9 @@
                 axios.get(uri).then((response) => {
                     this.comments = response.data;
                 });
+            },
+            remove(index) {
+                return this.comments.splice(index, 1);
             }
         }
     }

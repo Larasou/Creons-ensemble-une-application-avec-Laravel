@@ -17,7 +17,7 @@
                    <a @click="isEdited" href="javascript:void(0)">
                        <i class="olive pencil icon"></i>
                    </a>
-                   <a @click="destroy" href="javascript:void(0)">
+                   <a @click="destroy" class="ml-4" href="javascript:void(0)">
                        <i class="red trash icon"></i>
                    </a>
                </div>
@@ -66,6 +66,7 @@
             destroy() {
                 let uri = `${location.pathname}/${this.comment.id}/comment`;
                 axios.delete(uri);
+                this.$emit('deleted', this.comment.id);
             }
         }
     }
