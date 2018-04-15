@@ -31,6 +31,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => 'secret',
         'avatar' => $avatar[$rand],
+        'remember_token' => str_random(60),
     ];
 });
 

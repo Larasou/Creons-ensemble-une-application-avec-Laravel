@@ -13,7 +13,9 @@ class Comment extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->user_id = auth()->id();
+            if (auth()->check()) {
+                $model->user_id = auth()->id();
+            }
             $model->ip = request()->ip();
         });
     }

@@ -11,28 +11,16 @@
                     </button>
                 </div>
             </form>
-            <div v-for="comment in comments" class="comment">
-                <a class="avatar">
-                    <img :src="comment.user.avatar">
-                </a>
-                <div class="content">
-                    <a v-text="comment.user.name" class="author"></a>
-                    <div class="metadata">
-                        <div class="date">
-                            {{ comment.created_at }}
-                        </div>
-                    </div>
-                    <div v-text="comment.body" class="text"></div>
-                    <div class="actions">
-                        <a class="reply">Reply</a>
-                    </div>
-                </div>
+            <div v-for="comment in comments" class="comment mb-3">
+              <comment :comment="comment"></comment>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import Comment from './Comment';
+
     export default {
         name: "Comments",
        data() {
@@ -44,6 +32,7 @@
             // console.log(this.comments);
            this.fetch();
         },
+        components: { Comment },
         methods: {
             fetch() {
                 let uri = `${location.pathname}/comment`;
