@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Posts', 'prefix' => 'blog'], function () {
    Route::get('{category}/{post}/comment', 'CommentsController@index');
    Route::post('{category}/{post}/comment', 'CommentsController@store');
    Route::patch('{category}/{post}/{comment}/comment', 'CommentsController@update');
+   Route::delete('{category}/{post}/{comment}/comment', 'CommentsController@destroy');
 });
 
 Auth::routes();

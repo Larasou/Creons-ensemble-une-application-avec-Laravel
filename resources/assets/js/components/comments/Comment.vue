@@ -17,6 +17,9 @@
                    <a @click="isEdited" href="javascript:void(0)">
                        <i class="olive pencil icon"></i>
                    </a>
+                   <a @click="destroy" href="javascript:void(0)">
+                       <i class="red trash icon"></i>
+                   </a>
                </div>
            </div>
             <div v-if="editing === false" v-text="body" class="text"></div>
@@ -59,6 +62,10 @@
                }).then((response) => {
                    this.editing = false;
                });
+            },
+            destroy() {
+                let uri = `${location.pathname}/${this.comment.id}/comment`;
+                axios.delete(uri);
             }
         }
     }

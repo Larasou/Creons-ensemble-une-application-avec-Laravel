@@ -27,5 +27,11 @@ class CommentsController extends Controller
 
     public function update(Category $category, Post $post, Comment $comment) {
         $comment->update(request()->all());
+        return response("Ton commentaire a bien été mise à jour!");
+    }
+
+    public function destroy(Category $category, Post $post, Comment $comment) {
+        $comment->delete();
+        return response("Ton commentaire a bien été surpprimé!");
     }
 }
