@@ -1,17 +1,8 @@
 <template>
     <div class="mt-5">
         <div class="ui comments">
-            <form action="" method="POST" class="ui form">
-                <div class="field">
-                    <textarea name="body" rows="3"></textarea>
-                </div>
-                <div class="d-flex justify-content-end">
-                    <button type="submit" class="ui orange submit icon button">
-                        <i class="icon comment"></i> Commenter
-                    </button>
-                </div>
-            </form>
-            <div v-for="(comment, index) in comments" :key="comment.id" class="comment mb-3">
+            <add-comment @created="add"></add-comment>
+            <div v-for="(comment, index) in orderByComments" :key="comment.id" class="comment mb-3">
               <comment :comment="comment" @deleted="remove(index)"></comment>
             </div>
         </div>
@@ -20,6 +11,7 @@
 
 <script>
     import Comment from './Comment';
+    import AddComment from './AddComment';
 
     export default {
         name: "Comments",
@@ -32,13 +24,21 @@
             // console.log(this.comments);
            this.fetch();
         },
-        components: { Comment },
+        components: { Comment, AddComment },
+        computed: {
+            orderByComments() {
+                return _.orderBy(this.comments, 'created_at', 'desc');
+            }
+        },
         methods: {
             fetch() {
                 let uri = `${location.pathname}/comment`;
                 axios.get(uri).then((response) => {
                     this.comments = response.data;
                 });
+            },
+            add(item) {
+                return this.comments.push(item);
             },
             remove(index) {
                 return this.comments.splice(index, 1);

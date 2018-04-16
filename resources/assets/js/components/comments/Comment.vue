@@ -57,9 +57,7 @@
             },
             update() {
                 let uri = `${location.pathname}/${this.comment.id}/comment`;
-               axios.patch(uri, {
-                   body: this.body
-               }).then((response) => {
+               axios.patch(uri, this.$data).then((response) => {
                    this.editing = false;
                });
             },

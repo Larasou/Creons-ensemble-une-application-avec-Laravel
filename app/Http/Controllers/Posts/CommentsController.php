@@ -21,8 +21,8 @@ class CommentsController extends Controller
     }
 
     public function store(Category $category, Post $post) {
-        $post->comments()->create(request()->all());
-         return back();
+        $comment = $post->comments()->create(request()->all());
+        return $comment->load('user');
     }
 
     public function update(Category $category, Post $post, Comment $comment) {
