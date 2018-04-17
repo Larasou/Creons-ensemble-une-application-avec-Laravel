@@ -12,6 +12,7 @@
 <script>
     import Comment from './Comment';
     import AddComment from './AddComment';
+    import collection from '../../mixins/collections';
 
     export default {
         name: "Comments",
@@ -25,6 +26,7 @@
            this.fetch();
         },
         components: { Comment, AddComment },
+        mixins: [collection],
         computed: {
             orderByComments() {
                 return _.orderBy(this.comments, 'created_at', 'desc');
@@ -37,12 +39,7 @@
                     this.comments = response.data;
                 });
             },
-            add(item) {
-                return this.comments.push(item);
-            },
-            remove(index) {
-                return this.comments.splice(index, 1);
-            }
+
         }
     }
 </script>
