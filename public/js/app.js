@@ -14286,7 +14286,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(58);
+module.exports = __webpack_require__(59);
 
 
 /***/ }),
@@ -47537,7 +47537,7 @@ var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(46)
 /* template */
-var __vue_template__ = __webpack_require__(57)
+var __vue_template__ = __webpack_require__(58)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47610,7 +47610,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47658,7 +47658,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Comment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Comment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AddComment__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AddComment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__AddComment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_collections__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_collections__ = __webpack_require__(57);
 //
 //
 //
@@ -47677,11 +47677,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Comments",
-    data: function data() {
-        return {
-            comments: {}
-        };
-    },
     created: function created() {
         // console.log(this.comments);
         this.fetch();
@@ -47691,7 +47686,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_collections__["a" /* default */]],
     computed: {
         orderByComments: function orderByComments() {
-            return _.orderBy(this.comments, 'created_at', 'desc');
+            return _.orderBy(this.items, 'created_at', 'desc');
         }
     },
     methods: {
@@ -47700,7 +47695,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var uri = location.pathname + '/comment';
             axios.get(uri).then(function (response) {
-                _this.comments = response.data;
+                _this.items = response.data;
             });
         }
     }
@@ -48231,6 +48226,28 @@ if (false) {
 
 /***/ }),
 /* 57 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            items: []
+        };
+    },
+
+    methods: {
+        add: function add(item) {
+            return this.items.push(item);
+        },
+        remove: function remove(index) {
+            return this.items.splice(index, 1);
+        }
+    }
+});
+
+/***/ }),
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48277,35 +48294,10 @@ if (false) {
 }
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-    data: function data() {
-        return {
-            items: {}
-        };
-    },
-
-    methods: {
-        add: function add(item) {
-            return this.items.push(item);
-        },
-        remove: function remove(index) {
-            return this.items.splice(index, 1);
-        }
-    }
-});
 
 /***/ })
 /******/ ]);

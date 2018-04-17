@@ -18,7 +18,6 @@ class PostsController extends Controller
        }
         return view('posts.posts', [
             'posts' => $posts,
-            'categories' => Category::get(),
         ]);
     }
 

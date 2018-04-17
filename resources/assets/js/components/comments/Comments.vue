@@ -16,11 +16,6 @@
 
     export default {
         name: "Comments",
-       data() {
-            return {
-                comments: {}
-            }
-       },
         created() {
             // console.log(this.comments);
            this.fetch();
@@ -29,14 +24,14 @@
         mixins: [collection],
         computed: {
             orderByComments() {
-                return _.orderBy(this.comments, 'created_at', 'desc');
+                return _.orderBy(this.items, 'created_at', 'desc');
             }
         },
         methods: {
             fetch() {
                 let uri = `${location.pathname}/comment`;
                 axios.get(uri).then((response) => {
-                    this.comments = response.data;
+                    this.items = response.data;
                 });
             },
 

@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{ secure_asset('dist/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ secure_asset('dist/theme.min.css') }}">
     <script src="{{ secure_asset('dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
     @yield('css')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -38,6 +37,7 @@
                 </div>
             </div>
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ secure_asset('dist/semantic.min.js') }}"></script>
         @yield('js')
     </footer>
