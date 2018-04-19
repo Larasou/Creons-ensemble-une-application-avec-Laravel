@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index(Category $category)
     {
        if ($category->exists) {
@@ -19,6 +24,17 @@ class PostsController extends Controller
         return view('posts.posts', [
             'posts' => $posts,
         ]);
+    }
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store(Request $request)
+    {
+        $post = auth()->user()->posts()->create($request->all());
+        return redirect($post->path());
     }
 
     public function show(Category $category, Post $post)

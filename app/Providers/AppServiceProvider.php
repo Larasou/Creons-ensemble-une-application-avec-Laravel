@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('fr');
         setlocale(LC_TIME, 'fr_FR.utf8', 'fr');
         
-        view()->composer(['layouts.filters'], function ($view) {
+        view()->composer(['layouts.filters', 'posts.create', 'posts.edit'], function ($view) {
             $view->with('categories', Category::select('id', 'name', 'slug')->get());
         });
 

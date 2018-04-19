@@ -1,4 +1,5 @@
-<div class="d-flex justify-content-end">
+<div class="d-flex justify-content-between">
+    <a href="{{  route('post.create') }}" class="ui violet button">Publier un article</a>
     <div class="ui labeled icon top right pointing dropdown button">
         <i class="filter icon"></i>
         <span class="text">Filter Posts</span>
