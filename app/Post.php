@@ -16,6 +16,10 @@ class Post extends Model
         self::creating(function ($model) {
             $model->slug = str_slug($model->name);
         });
+        
+        self::deleting(function ($model) {
+            $model->comments->each->delete();
+        });
     }
 
     public function path()
