@@ -47610,7 +47610,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47668,21 +47668,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             editing: false,
             name: this.post.name,
             body: this.post.body,
-            category_id: this.post.category_id
+            category_id: this.post.category_id,
+            form: {}
         };
     },
 
     components: { Comments: __WEBPACK_IMPORTED_MODULE_0__comments_Comments___default.a },
+    created: function created() {
+        this.resetForm();
+    },
+
     methods: {
-        isEditing: function isEditing() {
-            if (this.editing) return this.editing = false;
+        editForm: function editForm() {
             return this.editing = true;
         },
+        resetForm: function resetForm() {
+            this.form = {
+                name: this.post.name,
+                body: this.post.body,
+                category_id: this.post.category_id
+            };
+            this.editing = false;
+        },
         update: function update() {
-            axios.patch('' + location.pathname, this.$data).then(this.onSuccess).catch(this.onFail);
+            axios.patch('' + location.pathname, this.form).then(this.onSuccess).catch(this.onFail);
         },
         onSuccess: function onSuccess(response) {
-            this.editing = false;
+            window.location = response.data.redirect;
+            //this.editing = false;
         },
         onFail: function onFail(error) {
             console.log(error);

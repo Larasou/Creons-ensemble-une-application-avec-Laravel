@@ -11,21 +11,33 @@
                 name: this.post.name,
                 body: this.post.body,
                 category_id: this.post.category_id,
+                form: {}
             }
         },
         components: {Comments},
+        created() {
+          this.resetForm();
+        },
         methods: {
-            isEditing() {
-                if (this.editing) return this.editing = false;
+            editForm() {
                 return this.editing = true;
             },
+            resetForm() {
+                this.form = {
+                    name: this.post.name,
+                    body: this.post.body,
+                    category_id: this.post.category_id,
+                };
+                 this.editing = false;
+            },
             update() {
-                axios.patch(`${location.pathname}`, this.$data)
+                axios.patch(`${location.pathname}`, this.form)
                     .then(this.onSuccess)
                     .catch(this.onFail);
             },
             onSuccess(response) {
-               this.editing = false;
+                window.location = response.data.redirect;
+               //this.editing = false;
             },
             onFail(error) {
                 console.log(error);

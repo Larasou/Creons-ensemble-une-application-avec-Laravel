@@ -8,18 +8,18 @@
      <div class="ui vertical segment">
         <div class="ui container">
             <h2 class="ui huge header">
-                @{{ name }}
+                @{{ form.name }}
                 <div class="sub header">
                     {{ $description }}
                 </div>
             </h2>
 
             <div class="d-flex justify-content-end mb-3">
-                <button v-if="! editing" @click="isEditing" class="ui mr-3 olive button icon">
+                <button v-if="! editing" @click="editForm" class="ui mr-3 olive button icon">
                     <i class="edit icon"></i>
                     Editer
                 </button>
-                <button v-else @click="isEditing" class="ui mr-3 orange button icon">
+                <button v-else @click="resetForm" class="ui mr-3 orange button icon">
                     <i class="close icon text-white"></i>
                     Annuler
                 </button>
@@ -37,10 +37,10 @@
             <form v-show="editing" @submit.prevent="update" method="POST" class="ui form mt-5">
                 <div class="two fields">
                     <div class="field">
-                        <input type="text" v-model="name" name="name" placeholder="Nom de l'article">
+                        <input type="text" v-model="form.name" name="name" placeholder="Nom de l'article">
                     </div>
                     <div class="field">
-                        <select v-model="category_id" name="category_id" class="ui dropdown">
+                        <select v-model="form.category_id" name="category_id" class="ui dropdown">
                             <option v-for="category in categories"
                                     :value="category.id"
                                     v-text="category.name"
@@ -50,21 +50,21 @@
                     </div>
                 </div>
                 <div class="field">
-                    <textarea v-model="body" name="body" placeholder="Votre article" rows="10"></textarea>
+                    <textarea v-model="form.body" name="body" placeholder="Votre article" rows="15"></textarea>
                 </div>
               <div class="d-flex justify-content-end">
                   <button type="submit" class="ui violet button icon">
                       <i class="check icon"></i>
                       Mettre à jour
                   </button>
-                  <button @click="isEditing" type="button" class="ui orange button icon">
+                  <button @click="resetForm" type="button" class="ui orange button icon">
                       <i class="close icon text-white"></i>
                       Annuler
                   </button>
               </div>
             </form>
 
-            <div v-if="! editing" v-text="body"></div>
+            <div v-if="! editing" v-html="form.body"></div>
 
            <comments></comments>
 

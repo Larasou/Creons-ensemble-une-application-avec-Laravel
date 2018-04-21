@@ -54,7 +54,10 @@ class PostsController extends Controller
     public function update(Category $category, Post $post)
     {
         $post->update(request()->all());
-        return "L'article a bien été mise à jour!";
+        return [
+            'message ' => "L'article a bien été mise à jour!",
+            'redirect' => url($post->path())
+        ];
     }
 
     public function destroy(Category $category, Post $post)
