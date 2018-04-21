@@ -8,7 +8,7 @@
      <div class="ui vertical segment">
         <div class="ui container">
             <h2 class="ui huge header">
-                {{ $title }}
+                @{{ name }}
                 <div class="sub header">
                     {{ $description }}
                 </div>
@@ -34,7 +34,7 @@
                 </form>
             </div>
 
-            <form v-if="editing" @submit.prevent="update" method="POST" class="ui form mt-5">
+            <form v-show="editing" @submit.prevent="update" method="POST" class="ui form mt-5">
                 <div class="two fields">
                     <div class="field">
                         <input type="text" v-model="name" name="name" placeholder="Nom de l'article">
@@ -64,7 +64,7 @@
               </div>
             </form>
 
-            <div v-else v-text="body"></div>
+            <div v-if="! editing" v-text="body"></div>
 
            <comments></comments>
 

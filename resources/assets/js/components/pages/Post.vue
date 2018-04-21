@@ -20,7 +20,15 @@
                 return this.editing = true;
             },
             update() {
-
+                axios.patch(`${location.pathname}`, this.$data)
+                    .then(this.onSuccess)
+                    .catch(this.onFail);
+            },
+            onSuccess(response) {
+               this.editing = false;
+            },
+            onFail(error) {
+                console.log(error);
             }
         }
     }
