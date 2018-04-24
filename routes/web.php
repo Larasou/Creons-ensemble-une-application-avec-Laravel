@@ -15,9 +15,17 @@ Route::get('/', function () {
     return view('homes.home');
 });
 
+Route::group(['namespace' => 'Auth'], function () {
+   Route::get('register', 'RegistersController@create')->name('register');
+   Route::post('register', 'RegistersController@store');
+   Route::get('login', 'LoginsController@create')->name('login');
+   Route::get('logout', 'LoginsController@destroy')->name('logout');
+});
+
+
 Route::group(['namespace' => 'Users'], function () {
    Route::get('users', 'UsersController@index')->name('users');
-})
+});
 
 ;Route::group(['namespace' => 'Tutorials'], function () {
    Route::get('tutorials', 'TutorialsController@index')->name('tutorials');
@@ -39,6 +47,6 @@ Route::group(['namespace' => 'Posts', 'prefix' => 'blog'], function () {
    Route::delete('{category}/{post}/{comment}/comment', 'CommentsController@destroy');
 });
 
-Auth::routes();
+/*Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');*/

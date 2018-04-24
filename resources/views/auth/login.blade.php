@@ -1,69 +1,43 @@
 @extends('templates.default')
 
+@section('meta-title', $title = "Se connecter")
+@section('meta-description', $description  = "")
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+    <div class="ui vertical segment">
+        <div class="ui container">
+            <h2 class="ui huge header">
+                {{ $title }}
+                <div class="sub header">
+                    {{ $description }}
                 </div>
-            </div>
+            </h2>
+
+            <form action="" method="POST" class="ui form">
+                @csrf
+                <div class="six wide field">
+                    <input type="text" value="{{ old('name') }}" name="name" placeholder="Nom d'utilisateur">
+                    {!! $errors->first('name', '<strong class="text-danger">:message</strong>') !!}
+                </div>
+
+                <div class="six wide field">
+                    <input type="password" value="{{ old('password') }}" name="password" placeholder="Mot de passe">
+                    {!! $errors->first('password', '<strong class="text-danger">:message</strong>') !!}
+                </div>
+
+                <button type="submit" class="ui violet icon button">
+                    <i class="user plus icon"></i>
+                    {{ $title }}
+                </button>
+            </form>
+
         </div>
     </div>
-</div>
+@endsection
+@section('js')
+    <script>
+        $('.ui.dropdown')
+            .dropdown()
+        ;
+    </script>
 @endsection
