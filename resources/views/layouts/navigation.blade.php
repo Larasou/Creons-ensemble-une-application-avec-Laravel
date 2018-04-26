@@ -7,20 +7,12 @@
         <a class="item" href="{{ route('tutorials') }}">Tutoriels</a>
         <a class="item" href="{{ route('blog') }}">Blog</a>
         <div class="right menu">
-            @guest()
-            <a class="item" href="{{ route('login') }}">
-                <i class="user icon"></i>
-            </a>
-            <a class="item" href="{{ route('register') }}">
-                <i class="user plus icon"></i>
-            </a>
+            @guest
+                <a class="item" href="{{ route('login') }}"><i class="user icon"></i></a>
+                <a class="item" href="{{ route('register') }}"><i class="user plus icon"></i></a>
             @else
-                <a class="item" href="/account">
-                    <i class="user icon"></i>
-                </a>
-                <a class="item" href="{{ route('logout') }}">
-                    <i class="power off icon"></i>
-                </a>
+                <a class="item" href="/account"><i class="user icon"></i></a>
+                <a class="item" href="{{ route('logout') }}"><i class="power off icon"></i></a>
             @endguest
             <a class="item" href="/atom.xml"><i class="feed icon"></i></a>
             <div class="item">

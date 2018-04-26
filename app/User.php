@@ -27,13 +27,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
 
-        self::saving(function ($model) {
-            $model->password = bcrypt($model->password);
-        });
+    public function setPasswordAttribute($password) {
+        $this->attributes['password'] = bcrypt($password);
     }
 
 

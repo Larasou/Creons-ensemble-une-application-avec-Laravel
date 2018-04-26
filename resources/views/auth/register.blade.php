@@ -1,7 +1,7 @@
 @extends('templates.default')
 
 @section('meta-title', $title = "S'enregistrer")
-@section('meta-description', $description  = "")
+@section('meta-description', $description  = "!")
 
 @section('content')
     <div class="ui vertical segment">
@@ -15,46 +15,56 @@
 
             <form action="" method="POST" class="ui form">
                 @csrf
-               <div class="six wide field">
-                   <input type="text" value="{{ old('name') }}" name="name" placeholder="Nom d'utilisateur">
-                   {!! $errors->first('name', '<strong class="text-danger">:message</strong>') !!}
-               </div>
 
-                <div class="rwo fields">
-                    <div class="six wide field">
-                        <input type="text" value="{{ old('email') }}" name="email" placeholder="Email">
+                <div class="eight wide field">
+                    <div class="ui left icon input">
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Nom d'utilisateur">
+                        <i class="user icon"></i>
+                    </div>
+                    {!! $errors->first('name', '<strong class="text-danger">:message</strong>') !!}
+                </div>
+
+                <div class="two fields">
+                    <div class="eight wide field">
+                        <div class="ui left icon input">
+                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Ton email">
+                            <i class="at icon"></i>
+                        </div>
                         {!! $errors->first('email', '<strong class="text-danger">:message</strong>') !!}
                     </div>
-                    <div class="six wide field">
-                        <input type="text" value="{{ old('email') }}" name="email_confirmation" placeholder="Confirmez email">
+
+                    <div class="eight wide field">
+                        <div class="ui left icon input">
+                            <input type="email" name="email_confirmation" value="{{ old('email_confirmation') }}" placeholder="Confirme ton email">
+                            <i class="at icon"></i>
+                        </div>
                         {!! $errors->first('email', '<strong class="text-danger">:message</strong>') !!}
                     </div>
                 </div>
 
-                <div class="rwo fields">
-                    <div class="six wide field">
-                        <input type="password" value="{{ old('password') }}" name="password" placeholder="Mot de passe">
+                <div class="two fields">
+                    <div class="eight wide field">
+                        <div class="ui left icon input">
+                            <input type="password" name="password" value="{{ old('password') }}" placeholder="Ton mot de passe">
+                            <i class="lock icon"></i>
+                        </div>
                         {!! $errors->first('password', '<strong class="text-danger">:message</strong>') !!}
                     </div>
-                    <div class="six wide field">
-                        <input type="password" value="{{ old('password') }}" name="password_confirmation" placeholder="Confirmez mot de passe">
+
+                    <div class="eight wide field">
+                        <div class="ui left icon input">
+                            <input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirme ton mot de passe">
+                            <i class="lock icon"></i>
+                        </div>
                         {!! $errors->first('password', '<strong class="text-danger">:message</strong>') !!}
                     </div>
                 </div>
 
-                <button type="submit" class="ui violet icon button">
+                <button class="ui violet big icon button">
                     <i class="user plus icon"></i>
-                    S'enregistrer
+                    {{ $title  }}
                 </button>
             </form>
-
         </div>
     </div>
-@endsection
-@section('js')
-    <script>
-        $('.ui.dropdown')
-            .dropdown()
-        ;
-    </script>
 @endsection

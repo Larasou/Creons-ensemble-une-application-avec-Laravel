@@ -1,7 +1,7 @@
 @extends('templates.default')
 
 @section('meta-title', $title = "Se connecter")
-@section('meta-description', $description  = "")
+@section('meta-description', $description  = "!")
 
 @section('content')
     <div class="ui vertical segment">
@@ -15,29 +15,45 @@
 
             <form action="" method="POST" class="ui form">
                 @csrf
+
                 <div class="six wide field">
-                    <input type="text" value="{{ old('name') }}" name="name" placeholder="Nom d'utilisateur">
+                    <div class="ui left icon input">
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Nom d'utilisateur">
+                        <i class="user icon"></i>
+                    </div>
                     {!! $errors->first('name', '<strong class="text-danger">:message</strong>') !!}
                 </div>
 
+
                 <div class="six wide field">
-                    <input type="password" value="{{ old('password') }}" name="password" placeholder="Mot de passe">
+                    <div class="ui left icon input">
+                        <input type="password" name="password" value="{{ old('password') }}" placeholder="Ton mot de passe">
+                        <i class="lock icon"></i>
+                    </div>
                     {!! $errors->first('password', '<strong class="text-danger">:message</strong>') !!}
                 </div>
 
-                <button type="submit" class="ui violet icon button">
-                    <i class="user plus icon"></i>
-                    {{ $title }}
-                </button>
+                <input type="hidden" name="redirect"
+                       value="{{ $_SERVER['HTTP_REFERER'] ?? '/' }}">
+
+               <div class="mt-3 mb-3">
+                   <div class="ui checkbox">
+                       <input type="checkbox" value="1" id="remember" name="remember">
+                       <label for="remember">Se soucveir de moi</label>
+                   </div>
+               </div>
+
+               <div>
+                   <button class="ui violet big icon button">
+                       <i class="user plus icon"></i>
+                       {{ $title  }}
+                   </button>
+               </div>
             </form>
 
+            <div class="col-4 mt-5">
+                <a href="{{ route('register') }}" class="ui fluid olive button">S'enregistrer</a>
+            </div>
         </div>
     </div>
-@endsection
-@section('js')
-    <script>
-        $('.ui.dropdown')
-            .dropdown()
-        ;
-    </script>
 @endsection
