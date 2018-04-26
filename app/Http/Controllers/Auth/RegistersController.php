@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\RegisterRequest;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,15 +18,9 @@ class RegistersController extends Controller
         return view('auth.register');
     }
 
-    public function store(Request $request) {
-        $request->validate([
-           'name' => 'required|between:3,30|alpha_dash|unique:users,name',
-            'email' => 'required|email|confirmed|unique:users,email',
-            'password' => 'required|min:6'
-        ]);
-
+    public function store(RegisterRequest $request)
+    {
         User::create($request->all());
-
         return redirect()->route('login');
     }
 }

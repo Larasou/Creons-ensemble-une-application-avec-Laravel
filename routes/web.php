@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('homes.home');
 });
 
+
 Route::group(['namespace' => 'Auth'], function () {
    Route::get('register', 'RegistersController@create')->name('register');
    Route::post('register', 'RegistersController@store');
@@ -22,6 +23,7 @@ Route::group(['namespace' => 'Auth'], function () {
    Route::post('login', 'LoginsController@store');
    Route::get('logout', 'LoginsController@destroy')->name('logout');
 });
+
 
 Route::group(['namespace' => 'Users'], function () {
    Route::get('users', 'UsersController@index')->name('users');
