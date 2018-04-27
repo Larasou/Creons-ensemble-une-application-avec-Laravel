@@ -20,6 +20,7 @@ class LoginsController extends Controller
 
     public function store(LoginRequest $request)
     {
+
         $user = User::where('name', $request->name)
             ->orWhere('email', $request->name)
             ->first();
@@ -38,7 +39,12 @@ class LoginsController extends Controller
     }
 
     public function destroy() {
+        $user = auth()->user();
         auth()->logout();
-        return back();
+        return redirect()->back()
+            ->with([
+                'title' => "Tu es déconnecté!!",
+                'violet' => "<strong>$user->name</strong>, à très bientôt!"
+            ]);
     }
 }

@@ -32,8 +32,8 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Tu dois renseigner ton nom d'utilisateur",
-            'password.required' => "Tu dois renseigner ton mot de passe",
+            'name.required' => "Quel est ton nom d'utilisateur ?",
+            'password.required' => 'Sans mot de passe on ne pourra rien faire...'
         ];
     }
 }

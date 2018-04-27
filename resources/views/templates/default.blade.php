@@ -21,6 +21,7 @@
 <div class="pusher">
     <div id="app" class="content">
         @include('layouts.navigation')
+        @include('layouts.flash')
         @yield('content')
     </div>
     <footer>

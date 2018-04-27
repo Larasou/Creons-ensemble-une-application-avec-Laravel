@@ -20,7 +20,11 @@ class RegistersController extends Controller
 
     public function store(RegisterRequest $request)
     {
-        User::create($request->all());
-        return redirect()->route('login');
+        $user = User::create($request->all());
+        return redirect()->route('login')
+            ->with([
+                'title' => "Félicitions!",
+                'violet' => "<strong>$user->name</strong>, ton compte a bien été crée!"
+            ]);
     }
 }

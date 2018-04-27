@@ -33,17 +33,17 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Tu dois renseigner ton nom d'utilisateur",
-            'name.between' => "Le nom d'utilisateur doit faire entre 3 et 30 caractères",
-            'name.alpha_dash' => "Le nom d'utilisateur doit entre des lettres et des chiifres",
-            'name.unique' => "Ce nom d'utilisateur est déjà pris",
-            'email.required' => "Tu dois renseigner ton email",
-            'email.email' => "Ceci n'est pas une adresse mail",
-            'email.confirmed' => "Les deux adresses mail ne se correspondent pas",
-            'email.unique' => "Cette adresse mail est déjà prise",
-            'password.required' => "Tu dois renseigner ton mot de passe",
-            'password.min' => "Ton mot de passe doit faire au minimum 3 caractères",
-            'password.confirmed' => "Les deux mot de passe ne se correspondent pas",
+            'name.required' => "Ton nom d'utilisateur est requis",
+            'name.between' => "Ton nom d'utilisateur doit être compris entre 3 et 30 caractères",
+            'name.alpha_dash' => "Ton nom d'utilisateur doit être en format alpha-numérique (Ex: jean_Du45)",
+            'name.unique' => "Ce nom d'utilisateur est déjà utilisé par un autre membre",
+            'email.required' => "Ton adresse email est requise",
+            'email.email' => "Ton adresse email n'est pas reconnue comme une adresse email valide",
+            'email.confirmed' => "Les adresses emails saisies ne sont pas identiques",
+            'email.unique' => "Cette adresse email est déjà utilisée par un autre membre",
+            'password.required' => "Vous devez saisir un mot de passe",
+            'password.confirmed' => "Les mots de passe saisis ne sont pas identiques",
+            'password.min' => "Ton mot de passe doit faire au minimum 6 caracères",
         ];
     }
 }
