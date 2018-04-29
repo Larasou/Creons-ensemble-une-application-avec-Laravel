@@ -39,7 +39,7 @@
 
                 <div class="mt-3 mb-3">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="remember" name="remember">
+                        <input type="checkbox" value="1" id="remember" name="remember">
                         <label for="remember">Se souvenir de moi</label>
                     </div>
                 </div>

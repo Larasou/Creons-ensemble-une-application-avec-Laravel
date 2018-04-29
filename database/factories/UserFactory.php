@@ -27,6 +27,7 @@ $factory->define(App\User::class, function (Faker $faker) {
     ];
     return [
         'title' => $faker->title,
+        'rank' => 2,
         'name' => $faker->unique()->firstName,
         'email' => $faker->unique()->safeEmail,
         'password' => 'secret',

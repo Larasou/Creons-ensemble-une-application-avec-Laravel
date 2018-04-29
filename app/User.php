@@ -15,8 +15,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'title', 'name', 'email', 'password', 'avatar'
+        'title', 'rank', 'name', 'email', 'password', 'avatar'
     ];
+
+    protected $with = ['level'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -27,12 +29,30 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::created(function () {
+            User::first()->update([
+                'rank' => 5,
+                'title' => 'Prof.',
+                'name' => 'Larasou',
+                'email' => 'soulouf@larasou.com'
+            ]);
+        });
+    }
+
 
     public function setPasswordAttribute($password)
     {
         $this->attributes['password']= bcrypt($password);
    }
 
+    public function level()
+   {
+       return $this->belongsTo(Rank::class, 'rank', 'level');
+   }
 
     public function comments() {
         return $this->hasMany(Comment::class);
