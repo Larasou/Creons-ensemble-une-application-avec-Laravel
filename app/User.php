@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'title', 'rank', 'name', 'email', 'password', 'avatar'
+        'title', 'rank', 'name', 'email', 'password', 'avatar', 'token'
     ];
 
     protected $with = ['level'];
@@ -32,6 +32,11 @@ class User extends Authenticatable
     protected static function boot()
     {
         parent::boot();
+
+        self::creating(function ($model) {
+            $token = bcrypt(str_random(60));
+            $model->token = str_replace('/', '$', $token);
+        });
 
         self::created(function () {
             User::first()->update([

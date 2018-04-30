@@ -29,13 +29,28 @@
 
     @if(session('orange'))
         <div class="ui orange icon message">
-            <i class="check icon"></i>
+            <i class="exclamation icon"></i>
             <div class="content">
                 <div class="header">
-                    {!! session('title') !!}
+                    {!! session('title') ?? "Attion!" !!}
                 </div>
                 <p>
                     {!! session('orange') !!}
+                </p>
+            </div>
+        </div>
+    @endif
+
+
+    @if(session('red'))
+        <div class="ui red icon message">
+            <i class="times icon"></i>
+            <div class="content">
+                <div class="header">
+                    {!! session('title') ?? "Attion!" !!}
+                </div>
+                <p>
+                    {!! session('red') !!}
                 </p>
             </div>
         </div>

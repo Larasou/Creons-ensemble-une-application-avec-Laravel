@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Auth'], function () {
    Route::get('login', 'LoginsController@create')->name('login');
    Route::post('login', 'LoginsController@store');
    Route::get('logout', 'LoginsController@destroy')->name('logout');
+   Route::get('validation/{user}/{token}', 'LoginsController@validation');
 });
 
 
