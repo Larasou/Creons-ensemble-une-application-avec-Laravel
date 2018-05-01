@@ -75,7 +75,7 @@ class LoginsController extends Controller
         auth()->logout();
         return redirect()->back()
             ->with([
-                'title' => "Tu es déconnecté!!",
+                'title' => "Tu es déconnecté!",
                 'violet' => "<strong>$user->name</strong>, à très bientôt!"
             ]);
     }

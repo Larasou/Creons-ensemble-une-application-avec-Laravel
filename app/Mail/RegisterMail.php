@@ -30,7 +30,7 @@ class RegisterMail extends Mailable
     public function build()
     {
         return $this->markdown('emails.register_mail')
-            ->subject("Bienvenue chez Larasou")
+            ->subject("Bienvenue chez LaraBlog")
             ->from('contact@larasou.com', 'Larasou')
             ->replyTo('soulouf@larasou.com', 'Soulouf');
     }

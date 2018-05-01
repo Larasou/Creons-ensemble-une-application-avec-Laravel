@@ -1,5 +1,5 @@
 @component('mail::message')
-# Binvenue chez Larasou
+# Bienvenue chez Larasou
 
 Salut {{ $user->name }}, ci-dessous il y a un lien afin de valider ton compte.
 
