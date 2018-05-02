@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('meta-title', $title = "Se connecter")
+@section('meta-title', $title = "Renvoie de l'email de confirmation")
 @section('meta-description', $description  = "")
 
 @section('content')
@@ -18,31 +18,13 @@
 
                 <div class="six wide field">
                     <div class="ui left icon input">
-                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Nom d'utilisateur">
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Nom d'utilisateur ou l'adresse email">
                         <i class="user icon"></i>
                     </div>
                     {!! $errors->first('name', '<strong class="text-danger">:message</strong>') !!}
                 </div>
 
-                <div class="six wide field">
-                    <div class="ui left icon input">
-                        <input type="password" name="password" value="{{ old('password') }}" placeholder="Ton mot de passe">
-                        <i class="lock icon"></i>
-                    </div>
-                    {!! $errors->first('password', '<strong class="text-danger">:message</strong>') !!}
-                </div>
 
-                <input type="hidden"
-                       name="redirect"
-                       value="{{ $_SERVER['HTTP_REFERER'] ?? '/' }}"
-                >
-
-                <div class="mt-3 mb-3">
-                    <div class="ui checkbox">
-                        <input type="checkbox" value="1" id="remember" name="remember">
-                        <label for="remember">Se souvenir de moi</label>
-                    </div>
-                </div>
 
                 <div>
                     <button class="ui violet icon button big">
