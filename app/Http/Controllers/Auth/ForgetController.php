@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\Auth\ForgetRequest;
 use App\Http\Requests\ConfirmationRequest;
+use App\Mail\Auth\ForgetMail;
 use App\Mail\NewPassword;
 use App\User;
 use Illuminate\Http\Request;
@@ -27,10 +29,12 @@ class ForgetController extends Controller
             ->orWhere('email', $request->name)
             ->first();
         if (! is_null($user)) {
-            $password = str_random(8);
-            $user->update(['password' => $password]);
+            $token = bcrypt(str_random(60));
+            $reset = str_replace('/', '$', $token);
 
-            Mail::to($user)->send(new NewPassword($user, $password));
+            $user->update(['reset' => $reset]);
+
+            Mail::to($user)->send(new ForgetMail($user));
 
             return back()->with([
                 'title' => "Email envoyé!",
@@ -40,6 +44,35 @@ class ForgetController extends Controller
         return back()->with([
             'title' => "L'utilisateur n'existe pas!",
             'red' => "Désolé, je n'ai pas trouvé un utilisateur!"
+        ]);
+    }
+
+    public function edit(User $user, $reset)
+    {
+        if ($user->reset === $reset)
+            return view('auth.passwords.reset');
+        return redirect()->route('login')->with([
+            'title' => "Oups...",
+            'red' => "Il y a eu un petit problème."
+        ]);
+    }
+
+    public function update(User $user, $reset, ForgetRequest $request)
+    {
+        if ($user->reset === $reset) {
+            $user->update([
+                'password' => $request->password,
+                'reset' => null,
+            ]);
+
+            return redirect()->route('login')->with([
+                'title' => "Mot de passe mise à jour!",
+                'blue' => "Félicitations <strong>$user->name</strong>, ton mot de passe a bien été mise à jour!",
+            ]);
+        }
+        return redirect()->route('login')->with([
+            'title' => "Oups...",
+            'red' => "Il y a eu un petit problème."
         ]);
     }
 }

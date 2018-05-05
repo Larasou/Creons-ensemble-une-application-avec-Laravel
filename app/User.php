@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'title', 'rank', 'name', 'email', 'password', 'avatar', 'token'
+        'title', 'rank', 'name', 'email', 'password', 'avatar', 'token', 'reset',
     ];
 
     protected $with = ['level'];

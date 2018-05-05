@@ -26,6 +26,8 @@ Route::get('validation/{user}/{token}', 'LoginsController@validation');
 
 Route::get('forget', 'ForgetController@create')->name('forget');
 Route::post('forget', 'ForgetController@store');
+Route::get('forget/{user}/{reset}', 'ForgetController@edit');
+Route::put('forget/{user}/{reset}', 'ForgetController@update');
 
 Route::get('confirmation', 'LConfirmationController@create')->name('confirmation');
 Route::post('confirmation', 'LConfirmationController@store');
