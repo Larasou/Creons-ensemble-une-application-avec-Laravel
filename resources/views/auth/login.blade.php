@@ -52,8 +52,13 @@
                 </div>
             </form>
 
-            <div>
-                <a href="{{ route('confirmation') }}">Email de confirmation non reçu ?</a>
+            <div class="mt-5 text-center">
+                <a href="{{ route('confirmation') }}" class="ui orange button">
+                    Email de confirmation non reçu ?
+                </a>
+                <a href="{{ route('forget') }}" class="ml-3 ui red button">
+                    Mot de passe perdu ?
+                </a>
             </div>
         </div>
     </div>

@@ -41,9 +41,15 @@ class LoginsController extends Controller
                 auth()->login($user);
                 return redirect($request->redirect);
             }
-            return back();
+            return back()->with([
+                'title' => "Oups...",
+                'red' => "Mot de passe ou nom d'utilisateur inccorect"
+            ]);
         }
-        return back();
+        return back()->with([
+            'title' => "Oups...",
+            'red' => "Mot de passe ou nom d'utilisateur inccorect"
+        ]);
     }
 
     public function validation(User $user, $token)

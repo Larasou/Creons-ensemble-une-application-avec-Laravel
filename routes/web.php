@@ -24,6 +24,9 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::get('logout', 'LoginsController@destroy')->name('logout');
 Route::get('validation/{user}/{token}', 'LoginsController@validation');
 
+Route::get('forget', 'ForgetController@create')->name('forget');
+Route::post('forget', 'ForgetController@store');
+
 Route::get('confirmation', 'LConfirmationController@create')->name('confirmation');
 Route::post('confirmation', 'LConfirmationController@store');
 });

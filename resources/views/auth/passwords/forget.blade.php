@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('meta-title', $title = "Renvoie de l'email de confirmation")
+@section('meta-title', $title = "Mot de passe perdu")
 @section('meta-description', $description  = "")
 
 @section('content')
@@ -16,7 +16,7 @@
             <form action="" method="POST" class="ui form">
                 @csrf
 
-                <div class="eight wide field">
+                <div class="eight wide tablet wide field">
                     <div class="ui left icon input">
                         <input type="text" name="name" value="{{ old('name') }}" placeholder="Nom d'utilisateur ou l'adresse email">
                         <i class="user icon"></i>
@@ -35,8 +35,8 @@
             </form>
 
             <div class="mt-5 text-center">
-                <a href="{{ route('forget') }}" class="ui red button">
-                    Mot de passe perdu ?
+                <a href="{{ route('confirmation') }}" class="ui orange button">
+                    Email de confirmation non reçu ?
                 </a>
             </div>
         </div>
