@@ -61,10 +61,7 @@ class LoginsController extends Controller
         if ($user) {
 
             if ($user->rank < 2) {
-                return [
-                    'title' => "Compte non validé!",
-                    'orange' => "<strong>$user->name</strong>, ton n'a pas encore été validé!"
-                ];
+               return $this->getError("<strong>$user->name</strong>, ton n'a pas encore été validé!");
             }
 
             if (\Hash::check($request->password, $user->password)) {
@@ -75,15 +72,9 @@ class LoginsController extends Controller
                 }
                 return ['redirect' => url($request->redirect)];
             }
-            return [
-                'title' => "Oups...",
-                'red' => "Mot de passe ou nom d'utilisateur inccorect"
-            ];
+            return $this->getError("Mot de passe ou nom d'utilisateur inccorect");
         }
-        return [
-            'title' => "Oups...",
-            'red' => "Mot de passe ou nom d'utilisateur inccorect"
-        ];
+       return  $this->getError("Mot de passe ou nom d'utilisateur inccorect");
     }
 
     public function validation(User $user, $token)
@@ -119,4 +110,13 @@ class LoginsController extends Controller
                 'violet' => "<strong>$user->name</strong>, à très bientôt!"
             ]);
     }
+
+    public function getError($message)
+   {
+       return response()->json([
+           'errors' => [
+               'echec' => $message
+           ]
+       ], 401);
+   }
 }

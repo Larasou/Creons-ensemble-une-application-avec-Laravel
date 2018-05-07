@@ -48570,7 +48570,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -48581,6 +48581,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Form__ = __webpack_require__(72);
 //
 //
 //
@@ -48644,22 +48645,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Login",
     data: function data() {
         return {
-            name: null,
-            password: null,
-            redirect: location.pathname,
-            remember: null
+            form: new __WEBPACK_IMPORTED_MODULE_0__core_Form__["a" /* default */]({
+                name: null,
+                password: null,
+                redirect: location.pathname,
+                remember: null
+            })
         };
     },
 
     methods: {
         submit: function submit() {
-            axios.post('/signin', this.$data).then(function (response) {
+            var _this = this;
+
+            axios.post('/signin', this.form).then(function (response) {
                 window.location = response.data.redirect;
+            }).catch(function (error) {
+                _this.form.errors.record(error.response.data.errors);
             });
         }
     }
@@ -48700,10 +48720,27 @@ var render = function() {
                   submit: function($event) {
                     $event.preventDefault()
                     return _vm.submit($event)
+                  },
+                  keydown: function($event) {
+                    _vm.form.errors.clear($event.target.name)
                   }
                 }
               },
               [
+                _vm.form.errors.has("echec")
+                  ? _c("div", { staticClass: "ui red icon message mt-3" }, [
+                      _c("i", { staticClass: "times icon" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "content" }, [
+                        _c("p", {
+                          domProps: {
+                            innerHTML: _vm._s(_vm.form.errors.getError("echec"))
+                          }
+                        })
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("div", { staticClass: "fourteen wide field" }, [
                   _c("div", { staticClass: "ui left icon input" }, [
                     _c("input", {
@@ -48711,8 +48748,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.name,
-                          expression: "name"
+                          value: _vm.form.name,
+                          expression: "form.name"
                         }
                       ],
                       attrs: {
@@ -48720,19 +48757,29 @@ var render = function() {
                         name: "name",
                         placeholder: "Nom d'utilisateur"
                       },
-                      domProps: { value: _vm.name },
+                      domProps: { value: _vm.form.name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.name = $event.target.value
+                          _vm.$set(_vm.form, "name", $event.target.value)
                         }
                       }
                     }),
                     _vm._v(" "),
                     _c("i", { staticClass: "user icon" })
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.form.errors.has("name")
+                    ? _c("div", { staticClass: "text-danger" }, [
+                        _c("strong", {
+                          domProps: {
+                            innerHTML: _vm._s(_vm.form.errors.get("name"))
+                          }
+                        })
+                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "fourteen wide field" }, [
@@ -48742,8 +48789,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.password,
-                          expression: "password"
+                          value: _vm.form.password,
+                          expression: "form.password"
                         }
                       ],
                       attrs: {
@@ -48751,19 +48798,29 @@ var render = function() {
                         name: "password",
                         placeholder: "Ton mot de passe"
                       },
-                      domProps: { value: _vm.password },
+                      domProps: { value: _vm.form.password },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.password = $event.target.value
+                          _vm.$set(_vm.form, "password", $event.target.value)
                         }
                       }
                     }),
                     _vm._v(" "),
                     _c("i", { staticClass: "lock icon" })
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.form.errors.has("password")
+                    ? _c("div", { staticClass: "text-danger" }, [
+                        _c("strong", {
+                          domProps: {
+                            innerHTML: _vm._s(_vm.form.errors.get("password"))
+                          }
+                        })
+                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "mt-3 mb-3" }, [
@@ -48773,8 +48830,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.remember,
-                          expression: "remember"
+                          value: _vm.form.remember,
+                          expression: "form.remember"
                         }
                       ],
                       attrs: {
@@ -48783,28 +48840,35 @@ var render = function() {
                         name: "remember"
                       },
                       domProps: {
-                        checked: Array.isArray(_vm.remember)
-                          ? _vm._i(_vm.remember, null) > -1
-                          : _vm.remember
+                        checked: Array.isArray(_vm.form.remember)
+                          ? _vm._i(_vm.form.remember, null) > -1
+                          : _vm.form.remember
                       },
                       on: {
                         change: function($event) {
-                          var $$a = _vm.remember,
+                          var $$a = _vm.form.remember,
                             $$el = $event.target,
                             $$c = $$el.checked ? true : false
                           if (Array.isArray($$a)) {
                             var $$v = null,
                               $$i = _vm._i($$a, $$v)
                             if ($$el.checked) {
-                              $$i < 0 && (_vm.remember = $$a.concat([$$v]))
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.form,
+                                  "remember",
+                                  $$a.concat([$$v])
+                                )
                             } else {
                               $$i > -1 &&
-                                (_vm.remember = $$a
-                                  .slice(0, $$i)
-                                  .concat($$a.slice($$i + 1)))
+                                _vm.$set(
+                                  _vm.form,
+                                  "remember",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
                             }
                           } else {
-                            _vm.remember = $$c
+                            _vm.$set(_vm.form, "remember", $$c)
                           }
                         }
                       }
@@ -48919,6 +48983,273 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Errors__ = __webpack_require__(73);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+var Form = function () {
+
+    /**
+     * Create a new Form instance.
+     *
+     * @param {object} data
+     */
+    function Form(data) {
+        _classCallCheck(this, Form);
+
+        this.originalData = data;
+
+        for (var field in data) {
+            this[field] = data[field];
+        }
+
+        this.errors = new __WEBPACK_IMPORTED_MODULE_0__Errors__["a" /* default */]();
+    }
+
+    /**
+     * Fetch all relevant data for the form.
+     */
+
+
+    _createClass(Form, [{
+        key: "data",
+        value: function data() {
+            var data = {};
+
+            for (var property in this.originalData) {
+                data[property] = this[property];
+            }
+
+            return data;
+        }
+
+        /**
+         * Submit the form.
+         *
+         * @param {string} requestType
+         * @param {string} url
+         */
+
+    }, {
+        key: "submit",
+        value: function submit(requestType, url) {
+            var _this = this;
+
+            var onSuccess = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+            axios[requestType](url, this.data()).then(function (response) {
+                if (onSuccess !== null) return onSuccess;
+                return _this.onSuccess(response.data.redirect);
+            }).catch(function (error) {
+                return _this.onFailure(error.response.data.errors);
+            });
+        }
+
+        /*   submit(requestType, url, onSuccess) {
+               return new Promise((resolve, reject) => {
+                   axios[requestType](url, this.data())
+                       .then(response => {
+                           onSuccess;
+                           resolve(response.data);
+                       })
+                       .catch(error => {
+                           this.onFail(error.response.data.errors);
+                            reject(error.response.data.errors);
+                       });
+               });
+           }*/
+
+    }, {
+        key: "onSuccess",
+        value: function onSuccess(response) {
+            window.location = response;
+        }
+    }, {
+        key: "onFailure",
+        value: function onFailure(error) {
+            this.errors.record(error);
+            flash("Je crois qu'il s'est passé un truc...", "Ca commence mal...", "error");
+        }
+
+        /**
+         * Reset the form fields.
+         */
+
+    }, {
+        key: "reset",
+        value: function reset() {
+            for (var field in this.originalData) {
+                this[field] = '';
+            }
+
+            this.errors.clear();
+        }
+
+        /**
+         * Send a POST request to the given URL.
+         * .
+         * @param {string} url
+         */
+
+    }, {
+        key: "post",
+        value: function post(url) {
+            return this.submit('post', url);
+        }
+
+        /**
+         * Send a PUT request to the given URL.
+         * .
+         * @param {string} url
+         */
+
+    }, {
+        key: "put",
+        value: function put(url) {
+            return this.submit('put', url);
+        }
+
+        /**
+         * Send a PATCH request to the given URL.
+         * .
+         * @param {string} url
+         */
+
+    }, {
+        key: "patch",
+        value: function patch(url) {
+            return this.submit('patch', url);
+        }
+
+        /**
+         * Send a DELETE request to the given URL.
+         * .
+         * @param {string} url
+         */
+
+    }, {
+        key: "delete",
+        value: function _delete(url) {
+            return this.submit('delete', url);
+        }
+    }]);
+
+    return Form;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Form);
+
+/***/ }),
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Errors = function () {
+
+    /**
+     * Create a new Errors instance.
+     */
+    function Errors() {
+        _classCallCheck(this, Errors);
+
+        this.errors = {};
+    }
+
+    /**
+     * Determine if we have any errors.
+     */
+
+
+    _createClass(Errors, [{
+        key: "any",
+        value: function any() {
+            return Object.keys(this.errors).length > 0;
+        }
+
+        /**
+         * Determine if an errors exists for the given field.
+         *
+         * @param {string} field
+         */
+
+    }, {
+        key: "has",
+        value: function has(field) {
+            return this.errors.hasOwnProperty(field);
+        }
+
+        /**
+         * Retrieve the error message for a field.
+         *
+         * @param {string} field
+         */
+
+    }, {
+        key: "get",
+        value: function get(field) {
+            if (this.errors[field]) {
+                return this.errors[field][0];
+            }
+        }
+    }, {
+        key: "getError",
+        value: function getError(field) {
+            if (this.errors[field]) {
+                return this.errors[field];
+            }
+        }
+
+        /**
+         * Record the new errors.
+         *
+         * @param {object} errors
+         */
+
+    }, {
+        key: "record",
+        value: function record(errors) {
+            this.errors = errors;
+        }
+
+        /**
+         * Clear one or all error fields.
+         *
+         * @param {string|null} field
+         */
+
+    }, {
+        key: "clear",
+        value: function clear(field) {
+            if (field) {
+                delete this.errors[field];
+
+                return;
+            }
+
+            this.errors = {};
+        }
+    }]);
+
+    return Errors;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Errors);
 
 /***/ })
 /******/ ]);
