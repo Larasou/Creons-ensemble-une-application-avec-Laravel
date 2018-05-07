@@ -25,10 +25,14 @@ class RegistersController extends Controller
 
         \Mail::to($user)->send(new RegisterMail($user));
 
+        if ($request->expectsJson())
+            return "<strong>$user->name</strong>, ton compte a bien été crée!";
+
         return redirect()->route('login')
             ->with([
                 'title' => "Félicitions!",
                 'violet' => "<strong>$user->name</strong>, ton compte a bien été crée!"
             ]);
     }
+
 }

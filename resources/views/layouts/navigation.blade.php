@@ -11,7 +11,7 @@
                 <a class="item" data-toggle="modal" data-target="#login">
                     <i class="user icon"></i>
                 </a>
-                <a class="item" href="{{ route('register') }}">
+                <a class="item" data-toggle="modal" data-target="#register">
                     <i class="user plus icon"></i>
                 </a>
             @else
