@@ -52,6 +52,40 @@ class LoginsController extends Controller
         ]);
     }
 
+    public function signin(LoginRequest $request)
+    {
+
+        $user = User::where('name', $request->name)
+            ->orWhere('email', $request->name)
+            ->first();
+        if ($user) {
+
+            if ($user->rank < 2) {
+                return [
+                    'title' => "Compte non validé!",
+                    'orange' => "<strong>$user->name</strong>, ton n'a pas encore été validé!"
+                ];
+            }
+
+            if (\Hash::check($request->password, $user->password)) {
+                if ($request->remember) {
+                    auth()->login($user, true);
+                } else {
+                    auth()->login($user);
+                }
+                return ['redirect' => url($request->redirect)];
+            }
+            return [
+                'title' => "Oups...",
+                'red' => "Mot de passe ou nom d'utilisateur inccorect"
+            ];
+        }
+        return [
+            'title' => "Oups...",
+            'red' => "Mot de passe ou nom d'utilisateur inccorect"
+        ];
+    }
+
     public function validation(User $user, $token)
     {
         if ($user->exists){

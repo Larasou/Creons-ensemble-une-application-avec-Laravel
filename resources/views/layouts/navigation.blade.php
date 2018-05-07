@@ -8,7 +8,7 @@
         <a class="item" href="{{ route('blog') }}">Blog</a>
         <div class="right menu">
             @guest
-                <a class="item" href="{{ route('login') }}">
+                <a class="item" data-toggle="modal" data-target="#login">
                     <i class="user icon"></i>
                 </a>
                 <a class="item" href="{{ route('register') }}">

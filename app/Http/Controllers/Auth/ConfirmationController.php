@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
-class LConfirmationController extends Controller
+class ConfirmationController extends Controller
 {
     public function create()
     {

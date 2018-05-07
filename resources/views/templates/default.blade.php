@@ -22,6 +22,7 @@
     <div id="app" class="content">
         @include('layouts.navigation')
         @include('layouts.flash')
+        <login></login>
         @yield('content')
     </div>
     <footer>

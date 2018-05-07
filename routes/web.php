@@ -21,6 +21,7 @@ Route::group(['namespace' => 'Auth'], function () {
    Route::post('register', 'RegistersController@store');
    Route::get('login', 'LoginsController@create')->name('login');
    Route::post('login', 'LoginsController@store');
+   Route::post('signin', 'LoginsController@signin');
 Route::get('logout', 'LoginsController@destroy')->name('logout');
 Route::get('validation/{user}/{token}', 'LoginsController@validation');
 
@@ -29,8 +30,8 @@ Route::post('forget', 'ForgetController@store');
 Route::get('forget/{user}/{reset}', 'ForgetController@edit');
 Route::put('forget/{user}/{reset}', 'ForgetController@update');
 
-Route::get('confirmation', 'LConfirmationController@create')->name('confirmation');
-Route::post('confirmation', 'LConfirmationController@store');
+Route::get('confirmation', 'ConfirmationController@create')->name('confirmation');
+Route::post('confirmation', 'ConfirmationController@store');
 });
 
 

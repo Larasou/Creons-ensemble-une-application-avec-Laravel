@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('post', require('./components/pages/Post.vue'));
+Vue.component('login', require('./components/auth/Login.vue'));
 
 const app = new Vue({
     el: '#app'
