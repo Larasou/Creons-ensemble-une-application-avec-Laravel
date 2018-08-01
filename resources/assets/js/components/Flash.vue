@@ -1,29 +1,29 @@
 <template>
-    <div v-show="open" class="flash-alert ui container grid">
-        <div class="ui teal message eight wide column">
-           <p v-html="body"></p>
-        </div>
-    </div>
+   <div v-show="open" :class="`bg-${color} flash-alert flex sm:rounded lg:rounded-full lg:inline-flex leading-none text-indigo-lightest py-4 px-5`">
+       <span v-html="body" class="text-center font-semibold text-lg lg:text-xl">Coucou les gens!</span>
+   </div>
 </template>
 
 <script>
     export default {
         name: "Flash",
-        props: ['message'],
+        props: ['message', 'bg'],
         data() {
             return {
                 body: null,
+                color: this.bg ? this.bg : 'indigo-darkest',
                 open: false
             }
         },
         created() {
-            this.flash(this.message);
+            this.flash(this.message, this.color);
         },
         methods: {
-            flash(message) {
+            flash(message, color = 'indigo-darkest') {
                 if (message) {
                     this.open = true;
                     this.body = message;
+                    this.color = color;
                     this.hide();
                 }
             },
@@ -40,6 +40,6 @@
     .flash-alert {
         position: fixed;
         bottom: 3rem;
-        left: 2rem;
+        right: 2rem;
     }
 </style>

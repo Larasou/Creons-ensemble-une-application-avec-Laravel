@@ -12,8 +12,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('meta-title')</title>
     <link rel="stylesheet" href="{{ secure_asset('dist/semantic.min.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('dist/theme.min.css') }}">
-    <script src="{{ secure_asset('dist/jquery.min.js') }}"></script>
     @yield('css')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -22,12 +20,12 @@
     <div id="app" class="content">
         @include('layouts.navigation')
         @include('layouts.flash')
-        <flash message="{{ session('flash') }}"></flash>
        @guest()
             <login></login>
             <register></register>
         @endguest
         @yield('content')
+        <flash message="{{ session('flash') }}" bg="{{ session('color') }}"></flash>
     </div>
     <footer>
         <div class="ui vertical stripe segment">

@@ -109,7 +109,8 @@ class LoginsController extends Controller
             ->with([
                 'title' => "Tu es déconnecté!",
                 'violet' => "<strong>$user->name</strong>, à très bientôt!",
-                'flash' => "<strong>$user->name</strong>, à très bientôt!"
+                'flash' => "<strong>$user->name</strong>, à très bientôt!",
+                'color' => 'blue'
             ]);
     }
 
