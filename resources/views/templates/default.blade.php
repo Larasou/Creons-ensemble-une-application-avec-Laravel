@@ -22,6 +22,7 @@
     <div id="app" class="content">
         @include('layouts.navigation')
         @include('layouts.flash')
+        <flash message="{{ session('flash') }}"></flash>
        @guest()
             <login></login>
             <register></register>

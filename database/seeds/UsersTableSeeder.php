@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
         $user = factory('App\User', 25)->create();
         $category = factory('App\Category', 5)->create();
         
-        $user->each(function ($user) use ($category) {
+        $user->each(function ($user) {
             factory('App\Profile', 1)->create([
                 'user_id' => $user->id,
             ]);

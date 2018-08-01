@@ -36,10 +36,11 @@ class LoginsController extends Controller
             if (\Hash::check($request->password, $user->password)) {
                 if ($request->remember) {
                     auth()->login($user, true);
-                    return redirect($request->redirect);
+                } else {
+                    auth()->login($user);
                 }
-                auth()->login($user);
-                return redirect($request->redirect);
+                return redirect($request->redirect)
+                    ->with('flash', "Tu es connecté!");
             }
             return back()->with([
                 'title' => "Oups...",
@@ -107,7 +108,8 @@ class LoginsController extends Controller
         return redirect()->back()
             ->with([
                 'title' => "Tu es déconnecté!",
-                'violet' => "<strong>$user->name</strong>, à très bientôt!"
+                'violet' => "<strong>$user->name</strong>, à très bientôt!",
+                'flash' => "<strong>$user->name</strong>, à très bientôt!"
             ]);
     }
 
