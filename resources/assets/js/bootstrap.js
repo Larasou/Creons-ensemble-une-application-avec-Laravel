@@ -2,6 +2,13 @@
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
 
+window.Vue = require('vue');
+
+window.bus = new Vue();
+
+window.flash = (message, color) => {
+    window.bus.$emit('flash', message, color);
+};
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This

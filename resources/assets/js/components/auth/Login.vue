@@ -95,6 +95,7 @@
                    })
                    .catch((error) => {
                        this.form.errors.record(error.response.data.errors)
+                       flash('Ha mince... identifiants inccrectes...', 'red');
                    });
             }
         }

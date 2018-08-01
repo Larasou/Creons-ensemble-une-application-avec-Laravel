@@ -14466,8 +14466,6 @@ module.exports = __webpack_require__(80);
 
 __webpack_require__(17);
 
-window.Vue = __webpack_require__(40);
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -14491,6 +14489,13 @@ var app = new Vue({
 window._ = __webpack_require__(18);
 window.Popper = __webpack_require__(6).default;
 
+window.Vue = __webpack_require__(40);
+
+window.bus = new Vue();
+
+window.flash = function (message, color) {
+  window.bus.$emit('flash', message, color);
+};
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -47900,7 +47905,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     created: function created() {
-        this.flash(this.message, this.color);
+        var _this = this;
+
+        if (this.message) {
+            this.flash(this.message, this.color);
+        }
+
+        window.bus.$on('flash', function (message) {
+            var color = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'blue';
+
+            _this.flash(message, color);
+        });
     },
 
     methods: {
@@ -47915,10 +47930,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         hide: function hide() {
-            var _this = this;
+            var _this2 = this;
 
             setTimeout(function () {
-                _this.open = false;
+                _this2.open = false;
             }, 5000);
         }
     }
@@ -48416,6 +48431,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var uri = location.pathname + '/' + this.comment.id + '/comment';
             axios.patch(uri, this.$data).then(function (response) {
                 _this.editing = false;
+                flash('Bravo! Ton commentaire a bien été mise à jour!', 'green-dark');
+            }).catch(function () {
+                flash('Ha mince... Il y a eu un problème!', 'red');
             });
         },
         destroy: function destroy() {
@@ -49043,6 +49061,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 window.location = response.data.redirect;
             }).catch(function (error) {
                 _this.form.errors.record(error.response.data.errors);
+                flash('Ha mince... identifiants inccrectes...', 'red');
             });
         }
     }

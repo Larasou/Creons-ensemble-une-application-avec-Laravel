@@ -16,7 +16,13 @@
             }
         },
         created() {
-            this.flash(this.message, this.color);
+            if (this.message) {
+                this.flash(this.message, this.color);
+            }
+
+            window.bus.$on('flash', (message, color = 'blue') => {
+                this.flash(message, color);
+            })
         },
         methods: {
             flash(message, color = 'indigo-darkest') {

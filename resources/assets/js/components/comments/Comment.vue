@@ -57,8 +57,12 @@
             },
             update() {
                 let uri = `${location.pathname}/${this.comment.id}/comment`;
-               axios.patch(uri, this.$data).then((response) => {
-                   this.editing = false;
+               axios.patch(uri, this.$data)
+                   .then((response) => {
+                       this.editing = false;
+                       flash('Bravo! Ton commentaire a bien été mise à jour!', 'green-dark')})
+                   .catch(() => {
+                       flash('Ha mince... Il y a eu un problème!', 'red');
                });
             },
             destroy() {
