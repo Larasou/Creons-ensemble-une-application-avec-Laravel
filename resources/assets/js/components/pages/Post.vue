@@ -14,10 +14,10 @@
                 form: {}
             }
         },
-        components: {Comments},
         created() {
           this.resetForm();
         },
+        components: { Comments },
         methods: {
             editForm() {
                 return this.editing = true;

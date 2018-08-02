@@ -10,28 +10,10 @@ use App\Http\Controllers\Controller;
 
 class CommentsController extends Controller
 {
-    public function __construct()
+    public function index(Category $category, Post $post)
     {
-        $this->middleware(['auth'])->except(['index']);
-    }
+        $comments = $post->comments()->orderByDesc('created_at')->get();
 
-    public function index(Category $category, Post $post) {
-        $comments = $post->comments()->with('user')->latest()->get();
-         return $comments;
-    }
-
-    public function store(Category $category, Post $post) {
-        $comment = $post->comments()->create(request()->all());
-        return $comment->load('user');
-    }
-
-    public function update(Category $category, Post $post, Comment $comment) {
-        $comment->update(request()->all());
-        return response("Ton commentaire a bien été mise à jour!");
-    }
-
-    public function destroy(Category $category, Post $post, Comment $comment) {
-        $comment->delete();
-        return response("Ton commentaire a bien été surpprimé!");
+        return response($comments, 200);
     }
 }

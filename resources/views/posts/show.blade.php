@@ -66,7 +66,7 @@
 
             <div v-if="! editing" v-html="form.body"></div>
 
-           <comments></comments>
+            <comments></comments>
 
         </div>
     </div>

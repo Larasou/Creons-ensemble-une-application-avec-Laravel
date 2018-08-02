@@ -53,10 +53,10 @@ Route::group(['namespace' => 'Posts', 'prefix' => 'blog'], function () {
    Route::patch('{category}/{post}', 'PostsController@update');
    Route::delete('{category}/{post}', 'PostsController@destroy');
 
-   Route::get('{category}/{post}/comment', 'CommentsController@index');
-   Route::post('{category}/{post}/comment', 'CommentsController@store');
-   Route::patch('{category}/{post}/{comment}/comment', 'CommentsController@update');
-   Route::delete('{category}/{post}/{comment}/comment', 'CommentsController@destroy');
+   // Comments
+   Route::get('{category}/{post}/comments', 'CommentsController@index');
+
+
 });
 
 /*Auth::routes();
