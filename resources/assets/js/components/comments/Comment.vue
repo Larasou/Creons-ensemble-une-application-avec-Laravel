@@ -63,7 +63,15 @@
         },
         methods: {
             submit() {
-                alert("En cours d'envoie!");
+                axios.put(`${location.pathname}/${this.comment.id}`, this.$data)
+                    .then(this.onSuccess)
+            },
+            onSuccess(response) {
+                this.$emit('updating', response.data);
+
+                this.state = 'default';
+
+                flash(`Ton commentaire é bien été mise à jour!`, 'green-dark')
             },
             resetForm() {
                 this.state = 'default';

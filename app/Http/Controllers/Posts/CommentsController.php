@@ -16,4 +16,11 @@ class CommentsController extends Controller
 
         return response($comments, 200);
     }
+
+    public function update(Category $category, Post $post, Comment $comment, Request $request)
+    {
+        $comment->update($request->all());
+
+        return response($comment->load('user'), 200);
+    }
 }

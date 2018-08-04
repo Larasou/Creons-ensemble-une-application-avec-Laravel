@@ -64616,6 +64616,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get(location.pathname + '/comments').then(function (response) {
                 _this.comments = response.data;
             });
+        },
+        updated: function updated($event) {
+            var index = this.comments.findIndex(function (element) {
+                return $event.id === element.id;
+            });
+
+            this.comments[index].body = $event.body;
         }
     }
 });
@@ -64785,7 +64792,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         submit: function submit() {
-            alert("En cours d'envoie!");
+            axios.put(location.pathname + '/' + this.comment.id, this.$data).then(this.onSuccess);
+        },
+        onSuccess: function onSuccess(response) {
+            this.$emit('updating', response.data);
+
+            this.state = 'default';
+
+            flash('Ton commentaire \xE9 bien \xE9t\xE9 mise \xE0 jour!', 'green-dark');
         },
         resetForm: function resetForm() {
             this.state = 'default';
@@ -65234,7 +65248,12 @@ var render = function() {
         return _c(
           "div",
           { key: comment.id },
-          [_c("comment", { attrs: { comment: comment } })],
+          [
+            _c("comment", {
+              attrs: { comment: comment },
+              on: { updating: _vm.updated }
+            })
+          ],
           1
         )
       })
