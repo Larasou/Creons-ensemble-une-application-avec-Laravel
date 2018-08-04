@@ -17,8 +17,19 @@ class CommentsController extends Controller
         return response($comments, 200);
     }
 
+    public function store(Category $category, Post $post, Request $request)
+    {
+        $request->validate(['body' => 'required']);
+
+        $comment = $post->comments()->create($request->all());
+
+        return response($comment->load('user'), 200);
+    }
+
     public function update(Category $category, Post $post, Comment $comment, Request $request)
     {
+        $request->validate(['body' => 'required']);
+
         $comment->update($request->all());
 
         return response($comment->load('user'), 200);

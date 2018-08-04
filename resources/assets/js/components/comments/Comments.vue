@@ -4,6 +4,8 @@
             <h3 class="text-black">Commentaires</h3>
         </div>
 
+        <add-comment @creating="created"></add-comment>
+
         <div v-for="comment in comments" :key="comment.id">
             <comment :comment="comment" @updating="updated" @deleting="deleted"></comment>
         </div>
@@ -12,6 +14,7 @@
 
 <script>
     import Comment from './Comment';
+    import AddComment from './AddComment';
 
     export default {
         name: "Comments",
@@ -23,13 +26,16 @@
         created() {
             this.fetch();
         },
-        components: { Comment },
+        components: { Comment, AddComment },
         methods: {
             fetch() {
                 axios.get(location.pathname + '/comments')
                     .then((response) => {
                         this.comments = response.data;
                     });
+            },
+            created($event) {
+                this.comments.unshift($event);
             },
             updated($event) {
                 let index = this.comments.findIndex((element) => {
