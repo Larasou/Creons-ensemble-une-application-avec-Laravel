@@ -64623,6 +64623,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
 
             this.comments[index].body = $event.body;
+        },
+        deleted: function deleted($event) {
+            var index = this.comments.findIndex(function (element) {
+                return $event.id === element.id;
+            });
+
+            this.comments.splice(index, 1);
         }
     }
 });
@@ -64799,7 +64806,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.state = 'default';
 
-            flash('Ton commentaire \xE9 bien \xE9t\xE9 mise \xE0 jour!', 'green-dark');
+            flash('Ton commentaire a bien \xE9t\xE9 mise \xE0 jour!', 'green-dark');
+        },
+        destroy: function destroy() {
+            var _this = this;
+
+            axios.delete(location.pathname + '/' + this.comment.id).then(function () {
+                _this.$emit('deleting', {
+                    id: _this.comment.id
+                });
+
+                flash('Ton commentaire a bien \xE9t\xE9 supprim\xE9!', 'blue');
+            });
         },
         resetForm: function resetForm() {
             this.state = 'default';
@@ -65114,7 +65132,15 @@ var render = function() {
             [_c("i", { staticClass: "icon edit" })]
           ),
           _vm._v(" "),
-          _vm._m(0)
+          _c(
+            "a",
+            {
+              staticClass: "ml-4",
+              attrs: { href: "javascript:void(0)" },
+              on: { click: _vm.destroy }
+            },
+            [_c("i", { staticClass: "icon trash" })]
+          )
         ])
       ]
     ),
@@ -65171,7 +65197,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "flex justify-end" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "button",
@@ -65193,16 +65219,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "ml-4", attrs: { href: "javascript:void(0)" } },
-      [_c("i", { staticClass: "icon trash" })]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -65251,7 +65267,7 @@ var render = function() {
           [
             _c("comment", {
               attrs: { comment: comment },
-              on: { updating: _vm.updated }
+              on: { updating: _vm.updated, deleting: _vm.deleted }
             })
           ],
           1

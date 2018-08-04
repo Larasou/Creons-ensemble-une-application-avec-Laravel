@@ -23,4 +23,11 @@ class CommentsController extends Controller
 
         return response($comment->load('user'), 200);
     }
+
+    public function destroy(Category $category, Post $post, Comment $comment)
+    {
+        $comment->delete();
+
+        return response("Ton commentaire a bien été supprimé!", 200);
+    }
 }

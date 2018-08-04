@@ -5,7 +5,7 @@
         </div>
 
         <div v-for="comment in comments" :key="comment.id">
-            <comment :comment="comment" @updating="updated"></comment>
+            <comment :comment="comment" @updating="updated" @deleting="deleted"></comment>
         </div>
     </div>
 </template>
@@ -37,6 +37,13 @@
                 });
 
                 this.comments[index].body = $event.body;
+            },
+            deleted($event) {
+                let index = this.comments.findIndex((element) => {
+                    return $event.id === element.id;
+                });
+
+               this.comments.splice(index, 1);
             }
         }
     };

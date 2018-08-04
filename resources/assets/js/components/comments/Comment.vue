@@ -6,7 +6,7 @@
                 <a @click="state = 'editing'" href="javascript:void(0)">
                     <i class="icon edit"></i>
                 </a>
-                <a href="javascript:void(0)" class="ml-4">
+                <a @click="destroy" href="javascript:void(0)" class="ml-4">
                     <i class="icon trash"></i>
                 </a>
             </div>
@@ -71,7 +71,17 @@
 
                 this.state = 'default';
 
-                flash(`Ton commentaire é bien été mise à jour!`, 'green-dark')
+                flash(`Ton commentaire a bien été mise à jour!`, 'green-dark')
+            },
+            destroy() {
+                axios.delete(`${location.pathname}/${this.comment.id}`)
+                    .then(() => {
+                        this.$emit('deleting', {
+                            id: this.comment.id
+                        });
+
+                        flash(`Ton commentaire a bien été supprimé!`, 'blue')
+                    });
             },
             resetForm() {
                 this.state = 'default';
