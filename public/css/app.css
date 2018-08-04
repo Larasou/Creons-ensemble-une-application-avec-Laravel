@@ -11130,6 +11130,16 @@ table {
   }
 }
 
+.form-comment {
+  background-color: #f1f5f8;
+  width: 100%;
+  font-size: 1.125rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .list-reset {
   list-style: none;
   padding: 0;

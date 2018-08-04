@@ -3,7 +3,7 @@
         <div class="flex flex-col items-center justify-center sm:mr-0 md:mr-4">
             <img :src="comment.user.avatar" width="75" height="75" :alt="comment.user.name">
             <div class="flex justify-between mt-2">
-                <a href="javascript:void(0)">
+                <a @click="state = 'editing'" href="javascript:void(0)">
                     <i class="icon edit"></i>
                 </a>
                 <a href="javascript:void(0)" class="ml-4">
@@ -12,23 +12,63 @@
             </div>
         </div>
 
-        <div class="flex flex-col justify-between w-full">
+        <div v-if="state === 'default'" class="flex flex-col justify-between w-full">
             <div class="mb-2">
-                <p v-html="comment.body"></p>
+                <p v-html="body"></p>
             </div>
-            <div class="italic text-grey-darker">
-               {{ comment.user.name }} <span class="text-lg">•</span> {{ comment.created_at }}
+            <div class="text-grey-darker">
+               {{ comment.user.name }} <span class="text-lg">•</span> {{ created_at }}
             </div>
         </div>
+
+        <form v-if="state === 'editing'" @submit.prevent="submit" class="w-full">
+            <div>
+                <textarea name="body"
+                          v-model="body"
+                          class="h-24 form-comment rounded"
+                ></textarea>
+            </div>
+
+            <div class="flex justify-end">
+                <button class="hover:bg-indigo-darker bg-indigo-darkest uppercase font-bold text-xs rounded text-indigo-lightest py-2 px-4" type="submit">
+                    <i class="icon save"></i>
+                    Enregistrer
+                </button>
+                <button @click="resetForm" class="hover:bg-red hover:text-red-lightest border border-red-dark bg-red-lightest uppercase font-bold text-xs rounded text-red py-2 px-4" type="button">
+                    Annuler
+                    <i class="icon times"></i>
+                </button>
+            </div>
+        </form>
+
     </div>
 </template>
 
 <script>
+    import moment from 'moment';
+
     export default {
         name: "Comment",
         props: ['comment'],
         data() {
-            return {}
+            return {
+                state: 'default',
+                body: this.comment.body
+            }
+        },
+        computed: {
+            created_at() {
+                return moment(this.comment.created_at).locale('fr').format('ddd Do MMM YYYY à H:mm')
+            }
+        },
+        methods: {
+            submit() {
+                alert("En cours d'envoie!");
+            },
+            resetForm() {
+                this.state = 'default';
+                this.body = this.comment.body;
+            }
         }
     };
 </script>
