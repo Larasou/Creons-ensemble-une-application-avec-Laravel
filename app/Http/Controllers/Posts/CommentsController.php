@@ -28,6 +28,8 @@ class CommentsController extends Controller
 
     public function update(Category $category, Post $post, Comment $comment, Request $request)
     {
+        $this->authorize('update', $comment);
+
         $request->validate(['body' => 'required']);
 
         $comment->update($request->all());
@@ -37,6 +39,8 @@ class CommentsController extends Controller
 
     public function destroy(Category $category, Post $post, Comment $comment)
     {
+        $this->authorize('update', $comment);
+
         $comment->delete();
 
         return response("Ton commentaire a bien été supprimé!", 200);

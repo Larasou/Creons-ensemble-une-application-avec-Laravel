@@ -9,6 +9,11 @@ window.bus = new Vue();
 window.flash = (message, color) => {
     window.bus.$emit('flash', message, color);
 };
+
+Vue.prototype.user = window.App.user;
+Vue.prototype.admin = window.App.admin;
+Vue.prototype.modo = window.App.modo;
+Vue.prototype.signedIn = window.App.signedIn;
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This

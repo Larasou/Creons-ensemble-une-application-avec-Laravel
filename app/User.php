@@ -77,4 +77,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tutorial::class);
     }
+
+    public static function admin()
+    {
+        return auth()->check() && auth()->user()->rank >= 4;
+    }
+
+    public static function modo()
+    {
+        return auth()->check() && auth()->user()->rank >= 3;
+    }
 }

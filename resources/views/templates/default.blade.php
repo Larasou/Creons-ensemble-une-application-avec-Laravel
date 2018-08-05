@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="{{ secure_asset('dist/semantic.min.css') }}">
     @yield('css')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script>
+       window.App = {!! json_encode([
+            'user' => auth()->user(),
+            'admin' => \App\User::admin(),
+            'modo' => \App\User::modo(),
+            'signedIn' => auth()->check(),
+       ]) !!}
+    </script>
 </head>
 <body class="theme">
 <div class="pusher">
