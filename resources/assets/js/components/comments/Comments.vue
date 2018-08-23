@@ -18,6 +18,7 @@
 
     export default {
         name: "Comments",
+        props: ['post'],
         data() {
             return {
                 comments: {}
@@ -25,11 +26,12 @@
         },
         created() {
             this.fetch();
+            console.log(this.post)
         },
         components: { Comment, AddComment },
         methods: {
             fetch() {
-                axios.get(location.pathname + '/comments')
+                axios.get(this.post.path + '/comments')
                     .then((response) => {
                         this.comments = response.data;
                     });

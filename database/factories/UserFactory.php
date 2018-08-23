@@ -1,5 +1,6 @@
 <?php
 
+use App\Traits\SeedsTrait;
 use Faker\Generator as Faker;
 
 /*
@@ -14,24 +15,14 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
-    $rand = rand(0, 7);
-    $avatar = [
-        '/images/avatar/daniel.jpg',
-        '/images/avatar/helen.jpg',
-        '/images/avatar/elliot.jpg',
-        '/images/avatar/elyse.png',
-        '/images/avatar/jenny.jpg',
-        '/images/avatar/steve.jpg',
-        '/images/avatar/stevie.jpg',
-        '/images/avatar/veronika.jpg'
-    ];
+
     return [
         'title' => $faker->title,
         'rank' => 2,
         'name' => $faker->unique()->firstName,
         'email' => $faker->unique()->safeEmail,
         'password' => 'secret',
-        'avatar' => $avatar[$rand],
+        'avatar' => array_random(SeedsTrait::$avatarSVG),
         'remember_token' => str_random(60),
     ];
 });
@@ -46,14 +37,10 @@ $factory->define(App\Profile::class, function (Faker $faker) {
 });
 
 $factory->define(App\Category::class, function (Faker $faker) {
-    $rand = rand(0, 5);
-    $color = [
-      'blue', 'red', 'olive', 'orange', 'violet', 'purple'
-    ];
     return [
         'name' => $faker->word,
         'description' => $faker->sentence,
-        'color' => $color[$rand],
+        'color' => array_random(SeedsTrait::$color),
     ];
 });
 

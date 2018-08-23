@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = ['user_id', 'category_id', 'name', 'slug', 'body'];
+
     protected $with = ['user', 'category'];
+
+    protected $appends = ['path'];
 
     protected static function boot()
     {
@@ -25,6 +28,10 @@ class Post extends Model
     public function path()
     {
         return "/blog/{$this->category->slug}/{$this->id}";
+    }
+
+    public function getPathAttribute() {
+        return $this->path();
     }
 
     public function comments() {

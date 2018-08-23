@@ -64609,6 +64609,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Comments",
+    props: ['post'],
     data: function data() {
         return {
             comments: {}
@@ -64616,6 +64617,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         this.fetch();
+        console.log(this.post);
     },
 
     components: { Comment: __WEBPACK_IMPORTED_MODULE_0__Comment___default.a, AddComment: __WEBPACK_IMPORTED_MODULE_1__AddComment___default.a },
@@ -64623,7 +64625,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetch: function fetch() {
             var _this = this;
 
-            axios.get(location.pathname + '/comments').then(function (response) {
+            axios.get(this.post.path + '/comments').then(function (response) {
                 _this.comments = response.data;
             });
         },

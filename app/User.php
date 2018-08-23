@@ -43,7 +43,8 @@ class User extends Authenticatable
                 'rank' => 5,
                 'title' => 'Prof.',
                 'name' => 'Larasou',
-                'email' => 'soulouf@larasou.com'
+                'email' => 'soulouf@larasou.com',
+                'avatar' => '/images/persons/svg/man-1.svg',
             ]);
         });
     }
