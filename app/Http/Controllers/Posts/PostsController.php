@@ -28,7 +28,10 @@ class PostsController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', [
+        'post' => new Post(),
+        'categories' => Category::pluck('name', 'id'),
+    ]);
     }
 
     public function store(Request $request)
@@ -48,16 +51,18 @@ class PostsController extends Controller
     {
         return view('posts.edit', [
             'post' => $post,
+            'categories' => Category::pluck('name', 'id'),
         ]);
     }
 
     public function update(Category $category, Post $post)
     {
         $post->update(request()->all());
-        return [
-            'message ' => "L'article a bien été mise à jour!",
-            'redirect' => url($post->path())
-        ];
+
+        return redirect($post->path)
+            ->with([
+                'flash' => "L'article $post->name a bien été mise à jour!",
+            ]);
     }
 
     public function destroy(Category $category, Post $post)

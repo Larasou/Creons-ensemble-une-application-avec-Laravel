@@ -48,6 +48,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
     return [
         'name' => $faker->text(25),
         'body' => $faker->text(900),
+        'image' => array_random(SeedsTrait::$avatar),
     ];
 });
 

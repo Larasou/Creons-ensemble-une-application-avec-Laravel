@@ -2,3 +2,22 @@
 .form-comment {
     @apply bg-grey-light w-full text-lg py-2 px-4;
 }
+
+
+// Form
+.form-default {
+    @apply font-semibold bg-grey-light w-full;
+}
+
+.form-input {
+    @apply form-default py-3 px-6;
+    &:focus {
+        @apply bg-grey-lightest;
+    }
+}
+.form-error {
+    @apply form-default py-3 px-6 border-red text-red;
+    &:focus {
+        @apply bg-grey-lightest;
+    }
+}

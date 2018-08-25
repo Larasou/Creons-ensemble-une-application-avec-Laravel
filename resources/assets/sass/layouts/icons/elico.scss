@@ -1,0 +1,91 @@
+@font-face {
+  font-family: 'elico';
+  src: url('#{$fontPath}elico.eot?21303849');
+  src: url('#{$fontPath}elico.eot?21303849#iefix') format('embedded-opentype'),
+       url('#{$fontPath}elico.woff2?21303849') format('woff2'),
+       url('#{$fontPath}elico.woff?21303849') format('woff'),
+       url('#{$fontPath}elico.ttf?21303849') format('truetype'),
+       url('#{$fontPath}elico.svg?21303849#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?21303849#fontello') format('svg');
+  }
+}
+*/
+ 
+ [class^="elico-"]:before, [class*=" elico-"]:before {
+  font-family: "elico";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.elico-emo-happy:before { content: '\e800'; } /* '' */
+.elico-emo-wink:before { content: '\e801'; } /* '' */
+.elico-emo-unhappy:before { content: '\e802'; } /* '' */
+.elico-emo-sleep:before { content: '\e803'; } /* '' */
+.elico-emo-thumbsup:before { content: '\e804'; } /* '' */
+.elico-emo-devil:before { content: '\e805'; } /* '' */
+.elico-emo-surprised:before { content: '\e806'; } /* '' */
+.elico-emo-tongue:before { content: '\e807'; } /* '' */
+.elico-emo-coffee:before { content: '\e808'; } /* '' */
+.elico-emo-sunglasses:before { content: '\e809'; } /* '' */
+.elico-emo-displeased:before { content: '\e80a'; } /* '' */
+.elico-emo-beer:before { content: '\e80b'; } /* '' */
+.elico-emo-grin:before { content: '\e80c'; } /* '' */
+.elico-emo-angry:before { content: '\e80d'; } /* '' */
+.elico-emo-saint:before { content: '\e80e'; } /* '' */
+.elico-emo-cry:before { content: '\e80f'; } /* '' */
+.elico-emo-shoot:before { content: '\e810'; } /* '' */
+.elico-emo-squint:before { content: '\e811'; } /* '' */
+.elico-emo-laugh:before { content: '\e812'; } /* '' */
+.elico-emo-wink2:before { content: '\e813'; } /* '' */
+.elico-spin1:before { content: '\e830'; } /* '' */
+.elico-spin2:before { content: '\e831'; } /* '' */
+.elico-spin3:before { content: '\e832'; } /* '' */
+.elico-spin4:before { content: '\e834'; } /* '' */
+.elico-spin5:before { content: '\e838'; } /* '' */
+.elico-spin6:before { content: '\e839'; } /* '' */
+.elico-firefox:before { content: '\e840'; } /* '' */
+.elico-chrome:before { content: '\e841'; } /* '' */
+.elico-opera:before { content: '\e842'; } /* '' */
+.elico-ie:before { content: '\e843'; } /* '' */
+.elico-crown:before { content: '\e844'; } /* '' */
+.elico-crown-plus:before { content: '\e845'; } /* '' */
+.elico-crown-minus:before { content: '\e846'; } /* '' */
+.elico-marquee:before { content: '\e847'; } /* '' */

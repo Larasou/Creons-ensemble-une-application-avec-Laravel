@@ -6,3 +6,10 @@ $body-bg: #f5f8fa;
 $font-family-sans-serif: "Raleway", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+// icons
+$fontPath: '/assets/fonts/';
+
+@import "layouts/icons/elico";
+@import "layouts/icons/entypo";
+@import "layouts/icons/font-awesome";
