@@ -1,7 +1,11 @@
 @extends('templates.default')
 
 @section('meta-title', $title = $post->name)
-@section('meta-description', $description  = str_limit($post->body, 35))
+@section('meta-description', $post->description)
+@section('meta-image', $post->image)
+@section('meta-created_at', $post->created_at)
+@section('meta-updated_at', $post->updated_at)
+@section('meta-url', request()->fullUrl())
 
 @section('content')
     <post :post="{{ $post }}" :categories="{{ $categories }}" inline-template>
@@ -9,9 +13,6 @@
             <div class="ui container">
                 <h2 class="ui huge header">
                     @{{ form.name }}
-                    <div class="sub header">
-                        {{ $description }}
-                    </div>
                 </h2>
 
 
@@ -46,24 +47,34 @@
                     </div>
 
                     <div class="flex">
-                        <div>
-                            <a href="javascript:void(0)"
-                               class="p-2 text-grey-dark hover:text-grey-darkest">
-                                <i class="fa-google"></i>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="javascript:void(0)"
-                               class="p-2 text-grey-dark hover:text-grey-darkest">
-                                <i class="entypo-facebook"></i>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="javascript:void(0)"
-                               class="p-2 text-grey-dark hover:text-grey-darkest">
-                                <i class="entypo-twitter"></i>
-                            </a>
-                        </div>
+                        <social-sharing url="{{ request()->fullUrl() }}"
+                                         :title="post.name"
+                                        :description="post.description"
+                                         :quote="post.description"
+                                        hashtags=""
+                                        twitter-user="Larasouu"
+                                        inline-template>
+                            <div>
+                                <network network="googleplus">
+                                    <a href="javascript:void(0)"
+                                       class="p-2 text-grey-dark hover:text-grey-darkest">
+                                        <i class="fa-google"></i>
+                                    </a>
+                                </network>
+                                <network network="facebook">
+                                    <a href="javascript:void(0)"
+                                       class="p-2 text-grey-dark hover:text-grey-darkest">
+                                        <i class="entypo-facebook"></i>
+                                    </a>
+                                </network>
+                                <network network="twitter">
+                                    <a href="javascript:void(0)"
+                                       class="p-2 text-grey-dark hover:text-grey-darkest">
+                                        <i class="entypo-twitter"></i>
+                                    </a>
+                                </network>
+                            </div>
+                        </social-sharing>
                     </div>
                 </div>
             </div>

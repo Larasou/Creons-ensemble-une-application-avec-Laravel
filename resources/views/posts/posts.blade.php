@@ -26,7 +26,7 @@
                             </a>
                         </span>
                         <p class="mt-3">
-                            {{ str_limit($post->body, 175)  }}
+                            {!! $markdown->parse($post->description) !!}
                         </p>
                         <a href="{{ url($post->path()) }}" class="ui orange right ribbon label">
                             Lire la suite...

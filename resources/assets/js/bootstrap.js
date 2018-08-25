@@ -4,6 +4,10 @@ window.Popper = require('popper.js').default;
 
 window.Vue = require('vue');
 
+var SocialSharing = require('vue-social-sharing');
+
+Vue.use(SocialSharing);
+
 window.bus = new Vue();
 
 window.flash = (message, color) => {

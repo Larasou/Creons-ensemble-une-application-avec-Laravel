@@ -47,7 +47,8 @@ $factory->define(App\Category::class, function (Faker $faker) {
 $factory->define(App\Post::class, function (Faker $faker) {
     return [
         'name' => $faker->text(25),
-        'body' => $faker->text(900),
+        'body' => $faker->paragraph(30),
+        'description' => $faker->paragraph(5),
         'image' => array_random(SeedsTrait::$avatar),
     ];
 });
