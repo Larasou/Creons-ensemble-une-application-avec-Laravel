@@ -88,4 +88,8 @@ class User extends Authenticatable
     {
         return auth()->check() && auth()->user()->rank >= 3;
     }
+
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
 }

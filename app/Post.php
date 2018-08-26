@@ -22,6 +22,8 @@ class Post extends Model
         
         self::deleting(function ($model) {
             $model->comments->each->delete();
+            
+            $model->likes->each->delete();
         });
     }
 
@@ -46,5 +48,26 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function likes()
+    {
+        return $this->morphMany('App`Like', 'liked');
+    }
+
+    public function like()
+    {
+        $user = ['user_id' => auth()->id()];
+
+        if (! $this->likes()->where($user)->exists()) {
+           return $this->likes()->create($user);
+        }
+    }
+
+    public function unlike()
+    {
+        $user = ['user_id' => auth()->id()];
+
+        $this->likes()->where($user)->get()->each->delete();
     }
 }
