@@ -32,15 +32,11 @@
 
                 <div v-html="form.body"></div>
 
-                <div class="text-4xl mt-5 flex flex-col md:flex-row justify-between">
+                <div class="mt-5 flex flex-col md:flex-row justify-between">
                     <div class="flex">
+                       <like :post="post"></like>
                         <div>
-                            <a href="javascript:void(0)" class="p-2 text-grey-darkest hover:text-grey-darkest">
-                                <i class="entypo-heart"></i>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="javascript:void(0)" class="p-2 text-grey-darkest hover:text-grey-darkest">
+                            <a href="javascript:void(0)" class="text-4xl p-2 text-grey-darkest hover:text-grey-darkest">
                                 <i class="entypo-bell"></i>
                             </a>
                         </div>
@@ -81,7 +77,6 @@
 
             <comments :post="post"></comments>
 
-        </div>
         </div>
     </post>
 @endsection

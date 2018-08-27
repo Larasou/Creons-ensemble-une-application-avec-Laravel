@@ -26,7 +26,6 @@
         },
         created() {
             this.fetch();
-            console.log(this.post)
         },
         components: { Comment, AddComment },
         methods: {

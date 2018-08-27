@@ -10,7 +10,7 @@ class Post extends Model
 
     protected $with = ['user', 'category'];
 
-    protected $appends = ['path'];
+    protected $appends = ['path', 'isLiked', 'likesCount'];
 
     protected static function boot()
     {
@@ -52,7 +52,7 @@ class Post extends Model
 
     public function likes()
     {
-        return $this->morphMany('App`Like', 'liked');
+        return $this->morphMany('App\Like', 'liked');
     }
 
     public function like()
@@ -69,5 +69,16 @@ class Post extends Model
         $user = ['user_id' => auth()->id()];
 
         $this->likes()->where($user)->get()->each->delete();
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsLikedAttribute() {
+        return !! $this->likes->where('user_id', auth()->id())->count();
+    }
+
+    public function getLikesCountAttribute() {
+        return $this->likes->count();
     }
 }

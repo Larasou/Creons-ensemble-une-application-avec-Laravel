@@ -1,6 +1,7 @@
 
 <script>
     import Comments from '../comments/Comments';
+    import Like from './PostLikes';
 
     export default {
         name: "Post",
@@ -17,7 +18,7 @@
         created() {
           this.resetForm();
         },
-        components: { Comments },
+        components: { Comments, Like },
         methods: {
             editForm() {
                 return this.editing = true;
