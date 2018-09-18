@@ -4,18 +4,21 @@ namespace App;
 
 use App\Relations\Commentable;
 use App\Relations\Likable;
+use App\Relations\Subscribers;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
 
-    use Likable, Commentable;
+    use Likable, Commentable, Subscribers;
 
     protected $fillable = ['user_id', 'category_id', 'description', 'image', 'name', 'slug', 'body'];
 
     protected $with = ['user', 'category'];
 
-    protected $appends = ['path', 'isLiked', 'likesCount', 'commentsCount'];
+    protected $appends = [
+        'path', 'isLiked', 'likesCount', 'commentsCount', 'isSubscribedTo'
+    ];
 
     protected static function boot()
     {
