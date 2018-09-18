@@ -1,7 +1,9 @@
 <template>
     <div class="max-w-3xl mx-auto">
         <div class="my-4">
-            <h3 class="text-black">Commentaires</h3>
+            <h3 class="text-black">
+               {{ message }}
+            </h3>
         </div>
 
         <add-comment @creating="created"></add-comment>
@@ -21,13 +23,21 @@
         props: ['post'],
         data() {
             return {
-                comments: {}
+                comments: {},
+                count: this.post.commentsCount,
             }
         },
         created() {
             this.fetch();
         },
         components: { Comment, AddComment },
+        computed: {
+            message() {
+                if (this.count <= 1)
+                    return this.count + ' commentaire';
+                return this.count + ' commentaires';
+            }
+        },
         methods: {
             fetch() {
                 axios.get(this.post.path + '/comments')
@@ -37,6 +47,8 @@
             },
             created($event) {
                 this.comments.unshift($event);
+
+                this.count++;
             },
             updated($event) {
                 let index = this.comments.findIndex((element) => {
@@ -51,6 +63,8 @@
                 });
 
                this.comments.splice(index, 1);
+
+                this.count--;
             }
         }
     };

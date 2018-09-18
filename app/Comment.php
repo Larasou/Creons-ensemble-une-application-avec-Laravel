@@ -2,12 +2,19 @@
 
 namespace App;
 
+use App\Relations\Likable;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    use Likable;
+
     protected $fillable = ['user_id', 'commentable_id', 'commentable_type', 'body', 'ip'];
+
     protected $with = ['user'];
+
+    protected $appends = ['isLiked', 'likesCount'];
+
 
     protected static function boot()
     {

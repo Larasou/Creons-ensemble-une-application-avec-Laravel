@@ -2,15 +2,20 @@
 
 namespace App;
 
+use App\Relations\Commentable;
+use App\Relations\Likable;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
+    use Likable, Commentable;
+
     protected $fillable = ['user_id', 'category_id', 'description', 'image', 'name', 'slug', 'body'];
 
     protected $with = ['user', 'category'];
 
-    protected $appends = ['path', 'isLiked', 'likesCount'];
+    protected $appends = ['path', 'isLiked', 'likesCount', 'commentsCount'];
 
     protected static function boot()
     {
@@ -18,12 +23,6 @@ class Post extends Model
 
         self::creating(function ($model) {
             $model->slug = str_slug($model->name);
-        });
-        
-        self::deleting(function ($model) {
-            $model->comments->each->delete();
-            
-            $model->likes->each->delete();
         });
     }
 
@@ -36,10 +35,6 @@ class Post extends Model
         return $this->path();
     }
 
-    public function comments() {
-        return $this->morphMany('App\Comment', 'commentable'); 
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -50,35 +45,4 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function likes()
-    {
-        return $this->morphMany('App\Like', 'liked');
-    }
-
-    public function like()
-    {
-        $user = ['user_id' => auth()->id()];
-
-        if (! $this->likes()->where($user)->exists()) {
-           return $this->likes()->create($user);
-        }
-    }
-
-    public function unlike()
-    {
-        $user = ['user_id' => auth()->id()];
-
-        $this->likes()->where($user)->get()->each->delete();
-    }
-
-    /**
-     * @return bool
-     */
-    public function getIsLikedAttribute() {
-        return !! $this->likes->where('user_id', auth()->id())->count();
-    }
-
-    public function getLikesCountAttribute() {
-        return $this->likes->count();
-    }
 }

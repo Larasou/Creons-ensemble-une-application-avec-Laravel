@@ -6,7 +6,7 @@
         <a v-else href="javascript:void(0)" :class="colors">
             <i class="entypo-heart"></i>
         </a>
-        <span v-text="count" class="font-bold text-2xl"></span>
+        <span v-text="count" class="-mt-5 font-bold text-2xl"></span>
     </div>
 </template>
 
