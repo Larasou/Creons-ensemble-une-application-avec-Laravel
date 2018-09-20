@@ -57,7 +57,11 @@ Route::group(['namespace' => 'Posts', 'prefix' => 'blog'], function () {
    Route::post('{category}/{post}/likes', 'PostLikesController@store');
    Route::delete('{category}/{post}/likes', 'PostLikesController@destroy');
 
-   // Comments
+    Route::post('{category}/{post}/subscribe', 'PostSubscribesController@store');
+    Route::delete('{category}/{post}/subscribe', 'PostSubscribesController@destroy');
+
+
+    // Comments
    Route::get('{category}/{post}/comments', 'CommentsController@index');
    Route::post('{category}/{post}/comments', 'CommentsController@store');
    Route::put('{category}/{post}/{comment}', 'CommentsController@update');

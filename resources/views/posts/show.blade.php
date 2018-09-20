@@ -35,11 +35,8 @@
                 <div class="mt-5 flex flex-col md:flex-row justify-between">
                     <div class="flex">
                        <like :post="post"></like>
-                        <div>
-                            <a href="javascript:void(0)" class="text-4xl p-2 text-grey-darkest hover:text-grey-darkest">
-                                <i class="entypo-bell"></i>
-                            </a>
-                        </div>
+
+                        <subscribe :post="post"></subscribe>
                     </div>
 
                     <div class="flex">

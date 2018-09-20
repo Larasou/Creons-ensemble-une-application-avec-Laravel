@@ -6,12 +6,16 @@ namespace App\Relations;
 
 trait Subscribers
 {
-    public static function bootLikable() {
+    public static function bootSubscribe() {
         self::deleting(function ($model) {
             $model->subscriptions->each->delete();
         });
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function subscriptions()
     {
         return $this->morphMany('App\Subscription', 'subscribed');
@@ -30,7 +34,7 @@ trait Subscribers
     }
 
     public function getIsSubscribedToAttribute() {
-        $this->subscriptions()
+        return $this->subscriptions()
         ->where('user_id', auth()->id())
         ->exists();
     }
