@@ -52,11 +52,10 @@ class Post extends Model
     public function addComment($comment) {
         $comment = $this->comments()->create($comment);
 
-        foreach ($this->subscriptions as $subscription) {
-            if ($subscription->user->id !== $comment->user_id) {
-                $subscription->user->notify(new NewCommentInAnPost($this, $comment));
-            }
-        }
+        $this->subscriptions
+            ->where('user_id', '!=', $comment->user_id)
+            ->each
+            ->notifyPost($comment);
 
 
         return $comment->load('user');
