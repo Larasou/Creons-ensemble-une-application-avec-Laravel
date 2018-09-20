@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\NewCommentInAnPost;
 use App\Relations\Commentable;
 use App\Relations\Likable;
 use App\Relations\Subscribers;
@@ -46,6 +47,19 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function addComment($comment) {
+        $comment = $this->comments()->create($comment);
+
+        foreach ($this->subscriptions as $subscription) {
+            if ($subscription->user->id !== $comment->user_id) {
+                $subscription->user->notify(new NewCommentInAnPost($this, $comment));
+            }
+        }
+
+
+        return $comment->load('user');
     }
 
 }

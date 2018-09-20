@@ -21,9 +21,9 @@ class CommentsController extends Controller
     {
         $request->validate(['body' => 'required']);
 
-        $comment = $post->comments()->create($request->all());
+        $comment = $post->addComment($request->all());
 
-        return response($comment->load('user'), 200);
+        return response($comment, 200);
     }
 
     public function update(Category $category, Post $post, Comment $comment, Request $request)
