@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class NewCommentInAnPost extends Notification
+class NewCommentInAnPost extends Notification implements ShouldQueue
 {
     use Queueable;
     /**
