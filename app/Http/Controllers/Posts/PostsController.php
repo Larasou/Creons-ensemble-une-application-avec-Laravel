@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Posts;
 
 use App\Category;
+use App\Notifications\POstWasUpdated;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -58,6 +59,12 @@ class PostsController extends Controller
     public function update(Category $category, Post $post)
     {
         $post->update(request()->all());
+
+        $post->subscriptions
+        ->each(function ($sub) use($post) {
+            $sub->user->notify(new POstWasUpdated($post));
+        });
+
 
         return redirect($post->path)
             ->with([

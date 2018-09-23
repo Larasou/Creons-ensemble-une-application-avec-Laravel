@@ -2,36 +2,28 @@
 
 namespace App\Notifications;
 
-use App\Comment;
 use App\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class NewCommentInAnPost extends Notification implements ShouldQueue
+class POstWasUpdated extends Notification implements ShouldQueue
 {
     use Queueable;
     /**
      * @var Post
      */
     private $post;
-    /**
-     * @var Comment
-     */
-    private $comment;
 
     /**
      * Create a new notification instance.
      *
      * @param Post $post
-     * @param Comment $comment
      */
-    public function __construct(Post $post, Comment $comment)
+    public function __construct(Post $post)
     {
         $this->post = $post;
-        $this->comment = $comment;
-
     }
 
     /**
@@ -54,13 +46,12 @@ class NewCommentInAnPost extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->markdown('emails.new_comment_in_an_post', [
+            ->markdown('emails.post_was_updated', [
                 'user' => $notifiable,
-                'post' => $this->post,
-                'comment' => $this->comment
+                'post' => $this->post
             ])
-            ->subject("Un nouveau commentaire dans {$this->post->name}")
-           ->from('contact@larasou.com', 'Larasou')
+            ->subject("L'article {$this->post->name} viens d'être mise à ajour!")
+            ->from('contact@larasou.com', 'Larasou')
             ->replyTo('soulouf@larasou.com', 'Soulouf');
     }
 
