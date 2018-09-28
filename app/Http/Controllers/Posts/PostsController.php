@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Posts;
 
 use App\Category;
-use App\Notifications\POstWasUpdated;
+use App\Notifications\PostWasUpdated;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -43,6 +43,9 @@ class PostsController extends Controller
 
     public function show(Category $category, Post $post)
     {
+
+        $post->visits()->increment();
+
         return view('posts.show', [
             'post' => $post,
         ]);
@@ -60,10 +63,12 @@ class PostsController extends Controller
     {
         $post->update(request()->all());
 
-        $post->subscriptions
-        ->each(function ($sub) use($post) {
-            $sub->user->notify(new POstWasUpdated($post));
-        });
+        if (\request()->notify) {
+            $post->subscriptions
+                ->each(function ($sub) use($post) {
+                    $sub->user->notify(new PostWasUpdated($post));
+                });
+        }
 
 
         return redirect($post->path)

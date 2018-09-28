@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class POstWasUpdated extends Notification implements ShouldQueue
+class PostWasUpdated extends Notification implements ShouldQueue
 {
     use Queueable;
     /**

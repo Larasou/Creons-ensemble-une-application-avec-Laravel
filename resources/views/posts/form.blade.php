@@ -20,10 +20,20 @@ $post->id ? $url = ['url' => $post->path, 'method' => 'PUT'] : $url =  ['url' =>
         {{ $errors->first('image', "<p class='font-bold text-red italic'>:message</p>") }}
     </div>
 
-    <div class="flex flex-col mt-3 md:flex-row">
-        {{ Form::textarea('body', null, ['class' => $errors->has('body') ? 'form-error mr-3' : 'form-input mr-3', 'placeholder' => "Image de l'article"]) }}
+    <div class="my-5 flex flex-col mt-3 md:flex-row">
+        {{ Form::textarea('description', null, ['class' => $errors->has('description') ? 'form-error mr-3' : 'form-input mr-3', 'rows' => 3, 'placeholder' => "Description de l'article"]) }}
+        {{ $errors->first('description', "<p class='font-bold text-red italic'>:message</p>") }}
+    </div>
+
+<div class="flex flex-col mt-3 md:flex-row">
+        {{ Form::textarea('body', null, ['class' => $errors->has('body') ? 'form-error mr-3' : 'form-input mr-3', 'rows' => 10, 'placeholder' => "Coprs de l'article"]) }}
         {{ $errors->first('body', "<p class='font-bold text-red italic'>:message</p>") }}
     </div>
+
+<label for="notify" class="ml-2 font-weight-bold text-xl-center">
+    <input type="checkbox" name="notify" id="notify">
+    Notifier les utilisateurs
+</label>
 
 <div class="w-full flex flex-row mt-5">
     <button type="submit" class="w-full px-6 font-weight-bold py-2 bg-blue text-white hover:bg-blue-dark">

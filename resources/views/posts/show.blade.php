@@ -34,6 +34,16 @@
 
                 <div class="mt-5 flex flex-col md:flex-row justify-between">
                     <div class="flex">
+                        <div class="flex flex-col items-center">
+                            <a href="javascript:void(0)"
+                               class="text-4xl px-2 text-blue-dark hover:text-blue-dark">
+                                <i class="entypo-eye"></i>
+                            </a>
+                            <span class="-mt-5 font-bold text-2xl">
+                                {{ visits($post)->count() }}
+                            </span>
+                        </div>
+
                        <like :post="post"></like>
 
                         <subscribe :post="post"></subscribe>

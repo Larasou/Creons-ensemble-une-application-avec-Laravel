@@ -63,4 +63,8 @@ class Post extends Model
         return $comment->load('user');
     }
 
+    public function visits() {
+        return visits($this);
+    }
+
 }
