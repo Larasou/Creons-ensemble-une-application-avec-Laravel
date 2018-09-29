@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('homes.home', [
+            'posts' => visits('App\Post')->low(6)
+        ]);
     }
 }

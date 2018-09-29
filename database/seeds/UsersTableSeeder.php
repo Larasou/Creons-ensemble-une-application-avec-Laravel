@@ -11,6 +11,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        visits('App\Post')->reset();
+
         $user = factory('App\User', 25)->create();
         $category = factory('App\Category', 5)->create();
         

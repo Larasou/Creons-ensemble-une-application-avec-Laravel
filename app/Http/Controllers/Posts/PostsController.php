@@ -22,7 +22,7 @@ class PostsController extends Controller
        }else {
            $posts = Post::latest()->get();
        }
-        return view('posts.posts', [
+        return view('posts.index', [
             'posts' => $posts,
         ]);
     }

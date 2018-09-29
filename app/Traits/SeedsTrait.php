@@ -36,6 +36,6 @@ trait SeedsTrait
     ];
 
     static public $color = [
-        'blue', 'red', 'olive', 'orange', 'violet', 'purple'
+        'blue', 'red', 'yellow', 'orange', 'green', 'teal' , 'indigo', 'pink', 'purple'
     ];
 }

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('homes.home');
-});
+Route::get('/', 'HomeController@index');
 
 
 Route::group(['namespace' => 'Auth'], function () {
