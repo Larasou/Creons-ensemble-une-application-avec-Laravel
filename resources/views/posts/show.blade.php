@@ -81,9 +81,9 @@
                     </div>
                 </div>
 
-                <div class="flex">
+                <div class="flex mt-3">
                    @foreach($post->load('tagged')->tags as $tag)
-                        <a href=""
+                        <a href="{{ route('blog', "tags=$tag->slug") }}"
                            class="mx-2 py-1 px-3 font-bold hover:no-underline text-grey-lighter hover:text-grey-lighter rounded-full bg-grey-darker">
                             {{ $tag->name }}
                         </a>

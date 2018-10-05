@@ -23,13 +23,13 @@ class UsersTableSeeder extends Seeder
         });
 
         $user->each(function ($userID) use ($category, $user) {
-            $post = factory('App\Post', 10)->create([
+            $posts = factory('App\Post', 10)->create([
                 'user_id' => $userID->id,
                 'category_id' => function () use ($category) {
                     return $category->random()->id;
                 }
             ]);
-            $post->each(function ($post) use ($user) {
+            $posts->each(function ($post) use ($user) {
                 factory('App\Comment', 10)->create([
                     'user_id' => function () use ($user) {
                         return $user->random()->id;
@@ -37,6 +37,10 @@ class UsersTableSeeder extends Seeder
                     'commentable_id' => $post->id,
                     'commentable_type' => get_class($post),
                 ]);
+
+                $post->load('tagged')->tag(array_random([
+                    'Voiture', 'Maman', 'Papa', 'Vélo', 'Voiture', 'Nuage', 'Ordinateur', 'Cloud'
+                ], 3));
             });
 
         });

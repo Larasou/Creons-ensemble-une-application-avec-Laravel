@@ -19,8 +19,11 @@ class PostsController extends Controller
     {
        if ($category->exists) {
            $posts = $category->posts()->latest()->get();
-       }else {
-           $posts = Post::latest()->get();
+       }
+       elseif (request('tags')){
+           $posts = Post::withAllTags(request('tags'))->get();
+       } else {
+           $posts = Post::orderByDesc('created_at')->get();
        }
         return view('posts.index', [
             'posts' => $posts,
