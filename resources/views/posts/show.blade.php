@@ -9,9 +9,9 @@
 
 @section('content')
     <post :post="{{ $post }}" :categories="{{ $categories }}" inline-template>
-        <div class="ui vertical segment">
-            <div class="ui container">
-                <h2 class="ui huge header">
+        <div class="">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold">
                     @{{ form.name }}
                 </h2>
 
@@ -80,6 +80,16 @@
                         </social-sharing>
                     </div>
                 </div>
+
+                <div class="flex">
+                   @foreach($post->load('tagged')->tags as $tag)
+                        <a href=""
+                           class="mx-2 py-1 px-3 font-bold hover:no-underline text-grey-lighter hover:text-grey-lighter rounded-full bg-grey-darker">
+                            {{ $tag->name }}
+                        </a>
+                    @endforeach
+                </div>
+
             </div>
 
             <comments :post="post"></comments>

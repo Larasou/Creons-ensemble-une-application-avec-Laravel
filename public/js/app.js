@@ -65515,11 +65515,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex sm:flex-col md:flex-row mb-4" }, [
+  return _c("div", { staticClass: "flex flex-col md:flex-row mb-4 px-2" }, [
     _c(
       "div",
       {
-        staticClass: "flex flex-col items-center justify-center sm:mr-0 md:mr-4"
+        staticClass:
+          "flex flex-col mb-3 items-center justify-center sm:mr-0 md:mr-4"
       },
       [
         _c("img", {
@@ -65566,8 +65567,8 @@ var render = function() {
             _c("p", { domProps: { innerHTML: _vm._s(_vm.body) } })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "text-grey-darker" }, [
-            _vm._v("\n           " + _vm._s(_vm.comment.user.name) + " "),
+          _c("div", { staticClass: "text-grey-darker text-sm" }, [
+            _vm._v("\n            " + _vm._s(_vm.comment.user.name) + " "),
             _c("span", { staticClass: "text-lg" }, [_vm._v("•")]),
             _vm._v(" " + _vm._s(_vm.created_at) + "\n        ")
           ])

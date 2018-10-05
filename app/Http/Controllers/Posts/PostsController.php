@@ -38,6 +38,9 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $post = auth()->user()->posts()->create($request->all());
+
+        $post->load('tagged')->tag($request->tags);
+
         return redirect($post->path());
     }
 
@@ -62,6 +65,8 @@ class PostsController extends Controller
     public function update(Category $category, Post $post)
     {
         $post->update(request()->all());
+
+        $post->load('tagged')->retag(request()->tags);
 
         if (\request()->notify) {
             $post->subscriptions

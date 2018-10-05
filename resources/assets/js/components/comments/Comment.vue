@@ -1,6 +1,6 @@
 <template>
-    <div class="flex sm:flex-col md:flex-row mb-4">
-        <div class="flex flex-col items-center justify-center sm:mr-0 md:mr-4">
+    <div class="flex flex-col md:flex-row mb-4 px-2">
+        <div class="flex flex-col mb-3 items-center justify-center sm:mr-0 md:mr-4">
             <img :src="comment.user.avatar" width="75" height="75" :alt="comment.user.name">
             <div v-if="editable" class="flex justify-between mt-2">
                 <a @click="state = 'editing'" href="javascript:void(0)">
@@ -16,8 +16,8 @@
             <div class="mb-2">
                 <p v-html="body"></p>
             </div>
-            <div class="text-grey-darker">
-               {{ comment.user.name }} <span class="text-lg">•</span> {{ created_at }}
+            <div class="text-grey-darker text-sm">
+                {{ comment.user.name }} <span class="text-lg">•</span> {{ created_at }}
             </div>
         </div>
 
@@ -58,9 +58,9 @@
         },
         computed: {
             editable() {
-              if (this.signedIn) {
-                  return this.user.id === this.comment.user_id || this.modo;
-              }
+                if (this.signedIn) {
+                    return this.user.id === this.comment.user_id || this.modo;
+                }
             },
             created_at() {
                 return moment(this.comment.created_at).locale('fr').format('ddd Do MMM YYYY à H:mm')
