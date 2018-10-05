@@ -1,36 +1,24 @@
-<nav class="ui borderless menu">
-    <div class="ui container">
-        <a class="brand item" href="/">
-            <img src="{{ secure_asset('images/logo/logo-bk.png') }}"/>
-        </a>
-        <a class="item" href="{{ route('users') }}">Membres</a>
-        <a class="item" href="{{ route('tutorials') }}">Tutoriels</a>
-        <a class="item" href="{{ route('blog') }}">Blog</a>
-        <div class="right menu">
-            @guest
-                <a class="item" data-toggle="modal" data-target="#login">
-                    <i class="user icon"></i>
-                </a>
-                <a class="item" data-toggle="modal" data-target="#register">
-                    <i class="user plus icon"></i>
-                </a>
-            @else
-                <a class="item" href="/account">
-                    <i class="user icon"></i>
-                </a>
-                <a class="item" href="{{ route('logout') }}">
-                    <i class="power off icon"></i>
-                </a>
-            @endguest
-            <a class="item" href="/atom.xml"><i class="feed icon"></i></a>
-            <div class="item">
-                <form action="https://www.google.com/search" class="ui form" method="get" target="_blank">
-                    <input name="q" type="hidden" value="site:semantic-ui-forest.com"/>
-                    <div class="ui left icon transparent input">
-                        <input name="q" placeholder="Search..." type="text"/><i class="search icon"></i>
-                    </div>
-                </form>
-            </div>
+
+<nav class="mb-3 bg-navigation shadow-md">
+    <div class="container mx-auto flex flex-col md:flex-row items-center md:justify-between px-4 py-6">
+        <div class="mb-2 md:mb-0">
+            <a href="/" class="text-white no-underline text-3xl">
+                <svg class="fill-current text-3xl h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+                <span class="font-semibold text-3xl tracking-tight">
+                    Larablog
+                </span>
+            </a>
+        </div>
+        <div class="text-lg">
+            <a href="/users" class="no-underline text-white hover:text-grey">
+                Memnres
+            </a>
+            <a href="/blog" class="ml-2 no-underline text-white hover:text-grey">
+                Blog
+            </a>
+            <a href="/contact" class="ml-2 no-underline text-white hover:text-grey">
+                Contact
+            </a>
         </div>
     </div>
 </nav>

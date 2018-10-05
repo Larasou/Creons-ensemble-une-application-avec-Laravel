@@ -23306,6 +23306,10 @@ table {
   background-color: #f8fafc;
 }
 
+.bg-navigation {
+  background-image: radial-gradient(circle at 150px 100%, #151435, #262370);
+}
+
 .list-reset {
   list-style: none;
   padding: 0;

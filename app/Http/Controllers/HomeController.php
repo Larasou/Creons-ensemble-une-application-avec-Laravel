@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         return view('homes.home', [
-            'posts' => visits('App\Post')->low(6)
+            'lastPosts' => Post::orderByDesc('created_at')->limit(3)->get(),
+            'posts' => visits('App\Post')->top(6)
         ]);
     }
 }
