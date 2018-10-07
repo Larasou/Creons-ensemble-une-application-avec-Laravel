@@ -42,6 +42,14 @@
             </div>
         </div>
     </div>
+
+    <div class="max-w-3xl mx-auto mt-3">
+        <h3 class="text-3xl font-bold">
+            Mes activités
+        </h3>
+        
+      @include('tutorials.profile_complete', ['activities' => $activities])
+    </div>
     
 @endsection
 @section('js')
