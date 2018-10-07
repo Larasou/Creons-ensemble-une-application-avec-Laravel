@@ -8,6 +8,8 @@
 @section('meta-url', request()->fullUrl())
 
 @section('content')
+    @include('layouts.min-nav')
+
     <post :post="{{ $post }}" :categories="{{ $categories }}" inline-template>
         <div class="">
             <div class="max-w-3xl mx-auto">

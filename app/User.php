@@ -18,6 +18,8 @@ class User extends Authenticatable
         'title', 'rank', 'name', 'email', 'password', 'avatar', 'token', 'reset',
     ];
 
+    protected $appends = ['path'];
+
     protected $with = ['level'];
 
     /**
@@ -91,5 +93,19 @@ class User extends Authenticatable
 
     public function likes() {
         return $this->hasMany(Like::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
+    public function path()
+    {
+        return "/@{$thisn->name}";
+    }
+
+    public function getPathAttribute() {
+        return $this->path();
     }
 }

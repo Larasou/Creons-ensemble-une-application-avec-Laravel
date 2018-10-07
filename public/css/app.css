@@ -23310,6 +23310,16 @@ table {
   background-image: radial-gradient(circle at 150px 100%, #151435, #262370);
 }
 
+.bg-profile {
+  background-color: #2f365f;
+}
+
+@media (min-width: 768px) {
+  .bg-profile {
+    height: 250px;
+  }
+}
+
 .list-reset {
   list-style: none;
   padding: 0;

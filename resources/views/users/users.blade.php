@@ -4,6 +4,8 @@
 @section('meta-description', $description  = "La liste des membres")
 
 @section('content')
+    @include('layouts.min-nav')
+
     <div class="ui vertical segment">
         <div class="ui container">
             <h2 class="ui huge header">

@@ -25,3 +25,11 @@
 .bg-navigation {
     background-image: radial-gradient(circle at 150px 100%, #151435, #262370);
 }
+
+.bg-profile {
+    @apply bg-indigo-darker;
+
+   @screen md {
+       height: 250px;
+   }
+}

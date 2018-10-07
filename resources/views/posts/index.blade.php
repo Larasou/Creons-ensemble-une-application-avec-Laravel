@@ -4,6 +4,7 @@
 @section('meta-description', $description  = "Les derniers actus!")
 
 @section('content')
+    @include('layouts.min-nav')
 
   <div class="max-w-3xl mx-auto">
       <h2 class="ui huge header">

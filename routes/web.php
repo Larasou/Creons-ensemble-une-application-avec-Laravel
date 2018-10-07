@@ -35,6 +35,7 @@ Route::post('confirmation', 'ConfirmationController@store');
 
 Route::group(['namespace' => 'Users'], function () {
    Route::get('users', 'UsersController@index')->name('users');
+   Route::get('@{user}', 'ProfilesController@show')->name('profile');
 });
 
 ;Route::group(['namespace' => 'Tutorials'], function () {

@@ -17,7 +17,9 @@
                 <p v-html="body"></p>
             </div>
             <div class="text-grey-darker text-sm">
-                {{ comment.user.name }} <span class="text-lg">•</span> {{ created_at }}
+                <a :href="comment.user.path" class="font-bold text-indigo-dark hover:text-indigo-dark hover:no-underline">
+                    {{ comment.user.name }}
+                </a> <span class="text-lg">•</span> {{ created_at }}
             </div>
         </div>
 
