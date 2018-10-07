@@ -11,7 +11,7 @@ class ProfilesController extends Controller
     public function show(User $user)
     {
         return view('users.profile', [
-            'user'=> $user,
+            'user' => $user
         ]);
     }
 }

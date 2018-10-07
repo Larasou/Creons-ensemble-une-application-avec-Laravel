@@ -8,12 +8,10 @@
 @section('meta-url', request()->fullUrl())
 
 @section('content')
-    @include('layouts.min-nav')
-
     <post :post="{{ $post }}" :categories="{{ $categories }}" inline-template>
         <div class="">
             <div class="max-w-3xl mx-auto">
-                <h2 class="text-3xl font-bold">
+                <h2 class="text-4xl">
                     @{{ form.name }}
                 </h2>
 
@@ -84,15 +82,14 @@
                 </div>
 
                 <div class="flex mt-3">
-                   @foreach($post->load('tagged')->tags as $tag)
-                        <a href="{{ route('blog', "tags=$tag->slug") }}"
-                           class="mx-2 py-1 px-3 font-bold hover:no-underline text-grey-lighter hover:text-grey-lighter rounded-full bg-grey-darker">
+                    @foreach($post->load('tagged')->tags as $tag)
+                        <a href="{{ route('blog', "tags=$tag->slug") }}" class="py-1 px-3 font-weight-bold hover:no-underline mx-2 rounded-full bg-grey-darker text-grey-lighter hover:text-grey-lighter">
                             {{ $tag->name }}
                         </a>
                     @endforeach
                 </div>
-
             </div>
+
 
             <comments :post="post"></comments>
 

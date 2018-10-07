@@ -19,11 +19,10 @@ class PostsController extends Controller
     {
        if ($category->exists) {
            $posts = $category->posts()->latest()->get();
-       }
-       elseif (request('tags')){
+       }elseif (request('tags')) {
            $posts = Post::withAllTags(request('tags'))->get();
        } else {
-           $posts = Post::orderByDesc('created_at')->get();
+           $posts = Post::latest()->get();
        }
         return view('posts.index', [
             'posts' => $posts,
@@ -71,7 +70,7 @@ class PostsController extends Controller
 
         $post->load('tagged')->retag(request()->tags);
 
-        if (\request()->notify) {
+        if (request()->notify) {
             $post->subscriptions
                 ->each(function ($sub) use($post) {
                     $sub->user->notify(new PostWasUpdated($post));

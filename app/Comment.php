@@ -3,11 +3,12 @@
 namespace App;
 
 use App\Relations\Likable;
+use App\Relations\RecordActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use Likable;
+    use Likable, RecordActivity;
 
     protected $fillable = ['user_id', 'commentable_id', 'commentable_type', 'body', 'ip'];
 

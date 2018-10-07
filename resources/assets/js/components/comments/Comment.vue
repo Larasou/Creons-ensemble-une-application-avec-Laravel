@@ -17,9 +17,7 @@
                 <p v-html="body"></p>
             </div>
             <div class="text-grey-darker text-sm">
-                <a :href="comment.user.path" class="font-bold text-indigo-dark hover:text-indigo-dark hover:no-underline">
-                    {{ comment.user.name }}
-                </a> <span class="text-lg">•</span> {{ created_at }}
+                <a :href="comment.user.path" class="font-bold text-indigo-dark hover:text-indigo-dark hover:no-underline">{{ comment.user.name }}</a> <span class="text-lg">•</span> {{ created_at }}
             </div>
         </div>
 
@@ -60,9 +58,9 @@
         },
         computed: {
             editable() {
-                if (this.signedIn) {
-                    return this.user.id === this.comment.user_id || this.modo;
-                }
+              if (this.signedIn) {
+                  return this.user.id === this.comment.user_id || this.modo;
+              }
             },
             created_at() {
                 return moment(this.comment.created_at).locale('fr').format('ddd Do MMM YYYY à H:mm')

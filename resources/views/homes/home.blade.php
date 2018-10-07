@@ -4,7 +4,6 @@
 @section('meta-description', $description  = "Bienvenue sur LaraBlog!")
 
 @section('content')
-    @include('layouts.min-nav')
 
     <div class="max-w-3xl mx-auto">
     <div class="mb-5">

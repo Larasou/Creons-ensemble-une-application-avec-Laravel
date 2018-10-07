@@ -5,6 +5,7 @@ namespace App;
 use App\Notifications\NewCommentInAnPost;
 use App\Relations\Commentable;
 use App\Relations\Likable;
+use App\Relations\RecordActivity;
 use App\Relations\Subscribers;
 use Conner\Tagging\Taggable;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
-    use Likable, Commentable, Subscribers, Taggable;
+    use Likable, Commentable, Subscribers, Taggable, RecordActivity;
 
     protected $fillable = ['user_id', 'category_id', 'description', 'image', 'name', 'slug', 'body'];
 

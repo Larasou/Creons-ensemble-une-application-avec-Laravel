@@ -40,7 +40,9 @@
 <div class="pusher">
     <div id="app" class="content">
         @include('layouts.navigation')
+
         @include('layouts.flash')
+
        @guest()
             <login></login>
             <register></register>
