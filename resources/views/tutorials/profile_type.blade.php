@@ -9,9 +9,12 @@
                 {{ $activity->subject->name }}
             </a>
         </h4>
-        <p class="text-lg">
+        <p class="text-lg my-2">
             {!! $markdown->parse($activity->subject->description) !!}
         </p>
+        <span class="text-sm font-bold text-grey-dark">
+            {{ ucwords($activity->created_at->formatLocalized('%a, %d %b %G')) }}
+        </span>
     </div>
 @endif
 
@@ -26,11 +29,11 @@
                 {{ $activity->subject->commentable->name }}
             </a>
         </h4>
-        <p class="text-lg">
+        <p class="text-lg my-2">
             {!! $markdown->parse($activity->subject->body) !!}
         </p>
         <span class="text-sm font-bold text-grey-dark">
-                       {{ ucwords($activity->created_at->formatLocalized('%a, %d %b %G')) }}
-                   </span>
+            {{ ucwords($activity->created_at->formatLocalized('%a, %d %b %G')) }}
+        </span>
     </div>
 @endif

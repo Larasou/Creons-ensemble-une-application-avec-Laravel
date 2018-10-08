@@ -13,6 +13,13 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::group(['prefix' => 'account'], function () {
+    Route::get('', 'AccountController@index')->name('account');
+    Route::get('email', 'EmailController@show')->name('account.email');
+    Route::get('username', 'UsernameController@show')->name('account.username');
+    Route::get('password', 'APassowrdController@show')->name('account.password');
+});
+
 
 Route::group(['namespace' => 'Auth'], function () {
    Route::get('register', 'RegistersController@create')->name('register');

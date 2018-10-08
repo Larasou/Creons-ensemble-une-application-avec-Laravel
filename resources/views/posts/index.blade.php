@@ -6,6 +6,8 @@
 @section('content')
 
   <div class="max-w-3xl mx-auto">
+      @include('layouts.min-nav')
+
       @include('layouts.filters')
 
       @include('layouts.posts_all',  ['view' => true])
