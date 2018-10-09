@@ -23320,6 +23320,30 @@ table {
   }
 }
 
+.btn {
+  font-weight: 700;
+  border-radius: .5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+}
+
+.bg-input {
+  width: 100%;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #8795a1;
+  font-weight: 600;
+}
+
+.bg-input:focus {
+  background-color: #dae1e7;
+}
+
 .list-reset {
   list-style: none;
   padding: 0;

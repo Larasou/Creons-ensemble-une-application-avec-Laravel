@@ -25,3 +25,20 @@
 .bg-navigation {
     background-image: radial-gradient(circle at 150px 100%, #151435, #262370);
 }
+
+.bg-profile {
+    @apply bg-indigo-darker;
+    @screen md {
+        height: 250px;
+    }
+}
+
+.btn {
+    @apply font-bold rounded-lg py-3 px-4 w-full;
+}
+.bg-input {
+    @apply w-full py-3 px-4 bg-grey-dark font-semibold;
+    &:focus {
+        @apply bg-grey-light;
+    }
+}

@@ -65187,8 +65187,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -65577,13 +65575,7 @@ var render = function() {
                   "font-bold text-indigo-dark hover:text-indigo-dark hover:no-underline",
                 attrs: { href: _vm.comment.user.path }
               },
-              [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.comment.user.name) +
-                    "\n            "
-                )
-              ]
+              [_vm._v(_vm._s(_vm.comment.user.name))]
             ),
             _vm._v(" "),
             _c("span", { staticClass: "text-lg" }, [_vm._v("•")]),
