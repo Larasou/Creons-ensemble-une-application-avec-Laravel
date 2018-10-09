@@ -23,7 +23,8 @@ Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
 
     Route::get('avatar', 'AvatarController@show')->name('account.avatar');
 
-    Route::get('password', 'APassowrdController@show')->name('account.password');
+    Route::get('password', 'PasswordController@show')->name('account.password');
+    Route::post('password/{user}', 'PasswordController@store')->name('account.password.store');
 });
 
 

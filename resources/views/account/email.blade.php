@@ -5,7 +5,7 @@
 
 @section('content')
     @component('account.header')
-        Modofoer mon adresse email!
+        Modifier mon adresse email!
         <hr>
         mon email: <strong class="text-yellow-dark">{{ $user->email }}</strong>
     @endcomponent
