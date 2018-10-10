@@ -41828,6 +41828,7 @@ Vue.component('flash', __webpack_require__(168));
 Vue.component('post', __webpack_require__(174));
 Vue.component('login', __webpack_require__(204));
 Vue.component('register', __webpack_require__(210));
+Vue.component('avatar', __webpack_require__(219));
 
 var app = new Vue({
   el: '#app'
@@ -67522,6 +67523,222 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(220)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(222)
+/* template */
+var __vue_template__ = __webpack_require__(223)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2973281c"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/account/Avatar.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2973281c", Component.options)
+  } else {
+    hotAPI.reload("data-v-2973281c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 220 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(221);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("6a596b56", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2973281c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Avatar.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2973281c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Avatar.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 222 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "Avatar",
+    props: ['user'],
+    data: function data() {
+        return {
+            avatar: this.user.avatar
+        };
+    },
+
+    methods: {
+        onChange: function onChange(e) {
+            var _this = this;
+
+            var avatar = e.target.files[0];
+
+            var reader = new FileReader();
+
+            reader.readAsDataURL(avatar);
+
+            reader.onload = function (e) {
+                _this.avatar = e.target.result;
+            };
+
+            this.update(avatar);
+        },
+        update: function update($avatar) {
+            var data = new FormData();
+            data.append('avatar', $avatar);
+
+            axios.post('/account/avatar/' + this.user.name, data).then(function () {
+                flash("L'avatar a bien été uplodé!");
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 223 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "flex flex-col items-center justify-center max-w-3xl mx-auto my-5 px-2"
+    },
+    [
+      _c("div", { staticClass: "flex mb-5 justify-center items-center" }, [
+        _c("img", {
+          attrs: { width: "150", src: _vm.avatar, alt: _vm.user.name }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-full lg:w-3/5" }, [
+        _c(
+          "form",
+          { attrs: { enctype: "multipart/form-data", method: "post" } },
+          [
+            _c("div", { staticClass: "my-3 flex flex-col" }, [
+              _c(
+                "label",
+                { staticClass: "bg-input", attrs: { for: "avatar" } },
+                [
+                  _vm._v(
+                    "\n                    Choissir un avatar\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "hidden",
+                attrs: { id: "avatar", name: "avatar", type: "file" },
+                on: { change: _vm.onChange }
+              })
+            ])
+          ]
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2973281c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

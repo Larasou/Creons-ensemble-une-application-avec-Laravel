@@ -13,15 +13,17 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
+Route::group(['middleware' => 'auth', 'namespace' => 'Account', 'prefix' => 'account'], function () {
     Route::get('', 'AccountController@index')->name('account');
 
     Route::get('email', 'EmailController@show')->name('account.email');
     Route::post('email/{user}', 'EmailController@store')->name('account.email.store');
     
     Route::get('username', 'UsernameController@show')->name('account.username');
+    Route::post('username/{user}', 'UsernameController@store')->name('account.username.store');
 
     Route::get('avatar', 'AvatarController@show')->name('account.avatar');
+    Route::post('avatar/{user}', 'AvatarController@store')->name('account.avatar.store');
 
     Route::get('password', 'PasswordController@show')->name('account.password');
     Route::post('password/{user}', 'PasswordController@store')->name('account.password.store');

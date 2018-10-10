@@ -18,6 +18,7 @@ Vue.component('flash', require('./components/Flash.vue'));
 Vue.component('post', require('./components/Posts/Post.vue'));
 Vue.component('login', require('./components/auth/Login.vue'));
 Vue.component('register', require('./components/auth/Register.vue'));
+Vue.component('avatar', require('./components/account/Avatar.vue'));
 
 const app = new Vue({
     el: '#app'
